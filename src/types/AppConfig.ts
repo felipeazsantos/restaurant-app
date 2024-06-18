@@ -1,10 +1,9 @@
-export interface AppConfig {
-    name: string;
-    webSettings: AppConfigWebSettings
-}
-
-interface AppConfigWebSettings {
+export interface AppConfigWebSettings {
+    backgroundColor: string;
     navBackgroundColour: string;
     primaryColour: string;
-    bannerImage: string
+    primaryColourHover: string;
+    bannerImage?: string;
+    venueId?: number;
+    id?: number;
 }

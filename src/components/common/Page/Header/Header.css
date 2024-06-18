@@ -1,0 +1,12 @@
+.header-nav {
+}
+
+.header-image {
+	width: 100vw;
+	height: 30vw;
+}
+
+.header-image__element {
+	max-width: 100vw;
+	height: 30vw;
+}

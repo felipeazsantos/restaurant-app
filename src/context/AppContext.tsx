@@ -1,20 +1,23 @@
-import React, { FC, ReactElement, useState, createContext } from 'react';
+import React, { FC, ReactElement, useState, createContext, useEffect } from 'react';
 import { AppContextProps, AppProviderProps } from '../types/AppContext';
+import { RestaurantDetails } from '../types/RestaurantDetails';
+import { fetchRestaurantDetails } from '../api/apiRestaurant';
 
 export const AppContext = createContext<AppContextProps>({
-    theme: '',
-    toggleTheme: () => { }
+    restaurantDetails: {}
 });
 
 export const AppProvider: FC<AppProviderProps> = ({ children }): ReactElement => {
-    const [theme, setTheme] = useState(null);
+    const [restaurantDetails, setRestaurantDetails] = useState<RestaurantDetails>({});
 
-    const toggleTheme = (theme: any) => {
-        setTheme(theme)
-    }
+    useEffect(() => {
+        fetchRestaurantDetails()
+            .then((details) => setRestaurantDetails(details))
+            .catch(err => console.log(err));
+    }, [])
 
     return (
-        <AppContext.Provider value={{ theme, toggleTheme }}>
+        <AppContext.Provider value={{ restaurantDetails }}>
             {children}
         </AppContext.Provider>
     )

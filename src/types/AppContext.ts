@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
+import { RestaurantDetails } from "./RestaurantDetails";
 
 export interface AppContextProps {
-    theme: any;
-    toggleTheme: (theme: any) => void;
+    restaurantDetails: RestaurantDetails;
 }
 
 export interface AppProviderProps {
