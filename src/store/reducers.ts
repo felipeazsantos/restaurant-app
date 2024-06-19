@@ -19,6 +19,11 @@ const webSettingsReducer = (state = initState, action: WebSettingsAction): Reduc
 
 const menuDetailsReducer = (state = initState, action: MenuDetailsAction): ReducerState => {
     switch (action.type) {
+        case ActionType.SET_MENU_DETAILS:
+            return {
+                ...state,
+                menuDetails: action.payload
+            }
         default: return state;
     }
 }
