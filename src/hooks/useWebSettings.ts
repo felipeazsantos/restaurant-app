@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { AppConfigWebSettings } from "../types/AppConfig";
-import bannerHead from '../assets/images/bannerImage.png';
+import bannerHeader from '../assets/images/bannerHeader.svg';
 
 const webSettingsDefault: AppConfigWebSettings = {
     backgroundColor: "#ffffff",
     navBackgroundColour: "#000000",
     primaryColour: "#000000",
     primaryColourHover: "#000000",
-    bannerImage: bannerHead
+    bannerImage: bannerHeader
 }
 
 
