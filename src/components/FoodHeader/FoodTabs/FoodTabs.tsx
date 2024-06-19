@@ -1,6 +1,7 @@
 import React, { FC, ReactElement, useState } from 'react';
 import { Box, Tabs, Tab } from '@mui/material';
 import { ICustomTabPanel } from '../interfaces/ICustomTabPanel';
+import { FoodContent } from '../../FoodContent/FoodContent';
 
 function CustomTabPanel(props: ICustomTabPanel) {
     const { children, value, index, ...other } = props;
@@ -11,9 +12,8 @@ function CustomTabPanel(props: ICustomTabPanel) {
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
-            {...other}
         >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+            {value === index && <Box>{children}</Box>}
         </div>
     );
 }
@@ -26,8 +26,8 @@ export const FoodTabs: FC = (): ReactElement => {
     };
 
     return (
-        <Box padding="0px 16px 24px 16px">
-            <Box sx={{ width: '100%' }}>
+        <Box>
+            <Box sx={{ width: '100%' }} padding="0px 16px 24px 16px">
                 <Tabs value={value} onChange={handleChange}
                     sx={{
                         display: 'flex',
@@ -40,13 +40,13 @@ export const FoodTabs: FC = (): ReactElement => {
                 </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-                Item One
+                <FoodContent />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-                Item Two
+                <FoodContent />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
-                Item Three
+                <FoodContent />
             </CustomTabPanel>
         </Box >
     )
