@@ -1,0 +1,9 @@
+.food-item__img-container {
+}
+
+.food-item__img {
+	contain: content;
+	width: 128px;
+	height: 85px;
+	border-radius: 6px;
+}

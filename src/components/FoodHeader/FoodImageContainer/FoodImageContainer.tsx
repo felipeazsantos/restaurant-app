@@ -1,8 +1,20 @@
 import React, { FC, ReactElement } from 'react';
 import { Box } from '@mui/material';
 import { FoodImage } from '../FoodImage/FoodImage';
+import { RootState } from '../../../store/store';
+import { useSelector } from 'react-redux';
+import { MenuDetails } from '../../../types/MenuDetails';
 
 export const FoodImageContainer: FC = (): ReactElement => {
+    const store = useSelector((state: RootState) => state.menuDetailsReducer);
+    const menuDetails: MenuDetails[] = Object.assign([], store.menuDetails);
+
+    const renderImage = (detail: MenuDetails) => {
+        const imageUrl = detail?.images ? detail.images[0].image : ""
+        const imageId = detail?.images ? detail.images[0].id : ""
+        return <FoodImage key={imageId} imageUrl={imageUrl} />
+    }
+
     return (
         <Box padding="0px 16px 24px 16px">
             <Box sx={{
@@ -10,9 +22,7 @@ export const FoodImageContainer: FC = (): ReactElement => {
                 display: 'flex',
                 justifyContent: 'space-around',
             }}>
-                <FoodImage imageUrl="https://img.freepik.com/fotos-gratis/cheeseburguer-grelhado-com-tomate-cebola-e-fritas-gerado-por-ia_188544-43039.jpg?t=st=1718804916~exp=1718808516~hmac=26e8bdd5adc82837f43c47f549d9dfccc77dc3ccead2b7e8e779c56ca74aaa42&w=826" />
-                <FoodImage imageUrl="https://img.freepik.com/fotos-gratis/cheeseburguer-grelhado-com-tomate-cebola-e-fritas-gerado-por-ia_188544-43039.jpg?t=st=1718804916~exp=1718808516~hmac=26e8bdd5adc82837f43c47f549d9dfccc77dc3ccead2b7e8e779c56ca74aaa42&w=826" />
-                <FoodImage imageUrl="https://img.freepik.com/fotos-gratis/cheeseburguer-grelhado-com-tomate-cebola-e-fritas-gerado-por-ia_188544-43039.jpg?t=st=1718804916~exp=1718808516~hmac=26e8bdd5adc82837f43c47f549d9dfccc77dc3ccead2b7e8e779c56ca74aaa42&w=826" />
+                {menuDetails.map(renderImage)}
             </Box>
         </Box>
     )

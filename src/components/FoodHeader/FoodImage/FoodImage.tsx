@@ -5,7 +5,15 @@ import { IFoodImage } from '../interfaces/IFoodImage';
 export const FoodImage: FC<IFoodImage> = (props): ReactElement => {
     return (
         <Box padding="4px" gap="10px">
-            <Avatar src={props.imageUrl} sx={{ width: 82, height: 82 }} />
+            <Avatar
+                src={props.imageUrl}
+                sx={{ height: 82, width: 82 }}
+                slotProps={{
+                    img: {
+                        style: { objectFit: 'cover' }
+                    }
+                }}
+            />
         </Box>
     )
 }
