@@ -1,8 +1,6 @@
 import React, { FC, ReactElement, useState } from 'react';
 import { Box, InputAdornment, OutlinedInput } from '@mui/material';
 import { Search } from '@mui/icons-material';
-// import './SearchInput.css';
-
 
 export const SearchInput: FC = (): ReactElement => {
     const [searchText, setSearchText] = useState<string>('');
@@ -18,15 +16,12 @@ export const SearchInput: FC = (): ReactElement => {
                 onChange={handleOnChange}
                 fullWidth
                 size="small"
+                placeholder="Search menu items"
                 startAdornment={(<InputAdornment position="start">
                     < Search />
                 </InputAdornment>)
                 }
             />
         </Box >
-
-        // <div className="search-input-container">
-        //     <input type="text" name="searchInput" value={searchText} onChange={handleOnChange} />
-        // </div>
     )
 }
