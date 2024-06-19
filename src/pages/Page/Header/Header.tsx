@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 
 import './Header.css';
-import { useWebSettings } from '../../../../hooks/useWebSettings';
+import { useWebSettings } from '../../../hooks/useWebSettings';
 
 export const Header: FC = (): ReactElement => {
     const { navBackgroundColour, bannerImage } = useWebSettings();
