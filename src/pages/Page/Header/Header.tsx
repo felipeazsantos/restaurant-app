@@ -1,10 +1,10 @@
 import React, { FC, ReactElement } from 'react';
 
 import './Header.css';
-import { useSelector } from 'react-redux';
+import { useWebSettings } from '../../../hooks/useWebSettings';
 
 export const Header: FC = (): ReactElement => {
-    const state = useSelector()
+    const { navBackgroundColour, bannerImage } = useWebSettings();
 
     return (
         <header className="header">

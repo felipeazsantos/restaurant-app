@@ -1,30 +1,40 @@
-import React, { useEffect, useState, FC, ReactElement } from 'react';
+import React, { useEffect, useState, FC, ReactElement, useCallback } from 'react';
 import './App.css';
 import { Page } from './pages/Page/Page';
 import { RestaurantDetails } from './types/RestaurantDetails';
 import { useDispatch } from 'react-redux';
 import { fetchRestaurantDetails } from './api/apiRestaurant';
-import { ActionType } from './types/ActionsType';
+import { ActionType } from './types/Reducers';
+import { CircularProgress, Box } from '@mui/material';
 
 const App: FC = (): ReactElement => {
+  // eslint-disable-next-line
   const [restaurantDetails, setRestaurantDetails] = useState<RestaurantDetails>({});
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const fetchData = useCallback(() => {
     fetchRestaurantDetails()
       .then((details) => {
         setRestaurantDetails(details);
         dispatch({
-          type: ActionType.SET_MENU_DETAILS,
-          payload: details
+          type: ActionType.SET_WEB_SETTINGS,
+          payload: details.webSettings
         })
-      })
-      .catch(err => console.log(err));
+        setIsLoading(false)
+      });
+
   }, [dispatch])
+
+  useEffect(() => {
+    fetchData();
+  }, [dispatch, fetchData])
 
 
   return (
-    <Page />
+    <Box>
+      {isLoading ? <CircularProgress /> : < Page />}
+    </Box>
   );
 }
 

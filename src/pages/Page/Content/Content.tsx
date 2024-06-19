@@ -5,6 +5,7 @@ import { fetchMenuDetails } from '../../../api/apiMenu';
 import { MenuDetails } from '../../../types/MenuDetails';
 
 export const Content: FC = (): ReactElement => {
+    // eslint-disable-next-line
     const [menuDetails, setMenuDetails] = useState<MenuDetails>({});
 
     useEffect(() => {
