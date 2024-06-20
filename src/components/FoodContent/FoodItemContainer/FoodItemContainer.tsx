@@ -25,7 +25,9 @@ export const FoodItemContainer: FC<IFoodItemContainer> = (props): ReactElement =
     return (
         <Accordion sx={{ border: 'none', boxShadow: 'none' }} defaultExpanded>
             <AccordionSummary expandIcon={<ExpandMore />}  >
-                <Typography variant="h6" height="28px">{title}</Typography>
+                <Typography variant="h6" height="28px" color="#121212">
+                    {title}
+                </Typography>
             </AccordionSummary>
             <AccordionDetails>
                 {items?.map(renderFoodItem)}

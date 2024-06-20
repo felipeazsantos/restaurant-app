@@ -1,24 +1,26 @@
 import React, { FC, ReactElement } from 'react';
-import { IFoodItemModifiers } from '../interfaces/IFoodModifiersContainer';
+import { IFoodModifiersContainer } from '../interfaces/IFoodModifiersContainer';
 import { MenuModifiersItem } from '../../../types/MenuDetails';
 import { FoodModifierItem } from '../FoodModifierItem/FoodModifierItem';
 import { FoodModifierHeader } from '../FoodModifierHeader/FoodModifierHeader';
+import { FoodModalDetailsCheckout } from '../../FoodCheckout/FoodModalDetailsCheckout/FoodModalDetailsCheckout';
 
-export const FoodModifiersContainer: FC<IFoodItemModifiers> = (props): ReactElement => {
-    const { modifiersItems } = props;
+export const FoodModifiersContainer: FC<IFoodModifiersContainer> = (props): ReactElement => {
+    const { modifier } = props;
 
-    const renderModifiers = (modifier: MenuModifiersItem) => {
+    const renderModifiers = (modifierItem: MenuModifiersItem) => {
         return (
-            <React.Fragment key={modifier.id}>
-                <FoodModifierHeader modifier={modifier} />
-                <FoodModifierItem modifier={modifier} />
+            <React.Fragment key={modifierItem.id}>
+                <FoodModifierItem modifier={modifierItem} />
             </React.Fragment>
         )
     }
 
     return (
         <>
-            {modifiersItems?.map(renderModifiers)}
+            <FoodModifierHeader modifier={modifier} />
+            {modifier?.items?.map(renderModifiers)}
+            <FoodModalDetailsCheckout />
         </>
     )
 }

@@ -14,15 +14,27 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
             <div onClick={handleModalOpen}>
                 <Grid container spacing={2} marginBottom="10px" paddingRight="40px">
                     <Grid item xs={8}>
-                        <Typography fontWeight="bold">{name}</Typography>
-                        <Typography sx={{
-                            display: '-webkit-box',
-                            overflow: 'hidden',
-                            WebkitBoxOrient: 'vertical',
-                            WebkitLineClamp: 2,
-                            textOverflow: 'ellipsis'
-                        }}> {description}</Typography>
-                        <Typography>R$ {price}</Typography>
+                        <Typography fontWeight="500" fontSize="16px" color="#121212">
+                            {name}
+                        </Typography>
+                        <Typography
+                            variant="body2"
+                            fontSize="16px"
+                            color="#464646"
+                            fontWeight="300"
+                            sx={{
+                                display: '-webkit-box',
+                                overflow: 'hidden',
+                                WebkitBoxOrient: 'vertical',
+                                WebkitLineClamp: 2,
+                                textOverflow: 'ellipsis'
+                            }}
+                        >
+                            {description}
+                        </Typography>
+                        <Typography fontWeight="500" fontSize="16px" color="#464646">
+                            R${price}
+                        </Typography>
                     </Grid>
                     <Grid item xs={4}>
                         <Avatar

@@ -1,12 +1,12 @@
 import { AppConfigWebSettings } from "../types/AppConfig";
 import { webSettingsDefault } from "../helpers/WebSettingsDefault";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 export const useWebSettings = (): AppConfigWebSettings => {
-    const store = useSelector((state: RootState) => state.webSettingsReducer)
-    if (store.webSettings) {
-        return store.webSettings;
+    const context = useContext(AppContext);
+    if (context?.restaurantDetails?.webSettings) {
+        return context.restaurantDetails.webSettings;
     }
     return webSettingsDefault;
 }

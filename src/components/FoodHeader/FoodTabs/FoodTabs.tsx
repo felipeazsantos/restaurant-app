@@ -28,11 +28,8 @@ export const FoodTabs: FC = (): ReactElement => {
         setValue(newValue);
     };
 
-    const renderTab = (detail: MenuDetails, index: number) => {
+    const renderTab = (detail: MenuDetails) => {
         const tabStyle = { flexGrow: 1, maxWidth: 'none', marginLeft: 'inherited' }
-        if (index === 1) {
-            tabStyle.marginLeft = '10px';
-        }
         return <Tab key={detail.id} label={detail.name} sx={tabStyle} />
     }
 

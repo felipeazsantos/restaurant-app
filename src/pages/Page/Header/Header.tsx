@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react';
 
 import './Header.css';
 import { useWebSettings } from '../../../hooks/useWebSettings';
-import { AppBar, Avatar, Box, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 
 export const Header: FC = (): ReactElement => {
@@ -10,18 +10,6 @@ export const Header: FC = (): ReactElement => {
 
     return (
         <header className="header">
-            {/* <nav className="header-nav" style={{ backgroundColor: navBackgroundColour }}>
-                <div className="header-nav__menu-text">
-                    <h1>Menu</h1>
-                </div>
-                <div className="header-nav__menu-icon">
-                    ☰
-                </div>
-            </nav>
-            <div className="header-image-container">
-                <img src={bannerImage} alt='banner header' />
-            </div> */}
-
             <AppBar sx={{ backgroundColor: navBackgroundColour, position: 'relative' }}>
                 <Toolbar>
                     <Box

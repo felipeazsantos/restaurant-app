@@ -1,10 +1,12 @@
 import { ReactNode } from "react";
 import { RestaurantDetails } from "./RestaurantDetails";
+import { MenuDetails } from "./MenuDetails";
 
 export interface AppContextProps {
-    restaurantDetails: RestaurantDetails;
+    restaurantDetails?: RestaurantDetails;
+    menuDetails?: MenuDetails
 }
 
-export interface AppProviderProps {
+export interface AppContextProviderProps {
     children: ReactNode
 }

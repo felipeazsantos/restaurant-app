@@ -1,5 +1,5 @@
-import { MenuModifiersItem } from "../../../types/MenuDetails";
+import { MenuItemModifiers } from "../../../types/MenuDetails";
 
 export interface IFoodModifierHeader {
-    modifier?: MenuModifiersItem
+    modifier?: MenuItemModifiers
 }

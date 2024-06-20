@@ -12,7 +12,8 @@ const modalStyle = {
     width: '100%',
     height: '100%',
     bgcolor: 'background.paper',
-    boxShadow: 24
+    boxShadow: 24,
+    overflow: 'scroll'
 };
 
 
@@ -27,7 +28,7 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
     } = props;
 
     const renderMenuItemModifiers = (modifier: MenuItemModifiers) => {
-        return <FoodModifiersContainer key={modifier.id} modifiersItems={modifier.items} />
+        return <FoodModifiersContainer key={modifier.id} modifier={modifier} />
     }
 
     return (
