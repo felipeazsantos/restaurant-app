@@ -1,23 +1,23 @@
 import React, { FC, ReactElement } from 'react';
-import { IFoodModifier } from '../interfaces/IFoodModifier';
+import { IFoodModifier } from '../interfaces/IFoodModifierItem';
 import { Box, Radio, Typography } from '@mui/material';
 
-export const FoodModifier: FC<IFoodModifier> = (props): ReactElement => {
+export const FoodModifierItem: FC<IFoodModifier> = (props): ReactElement => {
     const { modifier } = props;
 
     return (
-        <>
+        <Box padding="16px 24px" display="flex" flexDirection="row">
             <Box flexGrow="1">
-                <Typography>
+                <Typography fontWeight="bold">
                     {modifier?.name}
                 </Typography>
                 <Typography>
-                    {modifier?.price}
+                    R${modifier?.price}
                 </Typography>
             </Box>
             <Box>
                 <Radio />
             </Box>
-        </>
+        </Box>
     )
 }
