@@ -34,6 +34,11 @@ export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
 				sx={{
 					backgroundColor: removeBgColor,
 					color: '#ffffff',
+					width: '32px',
+					height: '32px',
+					minHeight: 'unset',
+					padding: '4px',
+					fontSize: '12px',
 					'&:hover': {
 						backgroundColor: removeBgColor,
 					},
@@ -58,6 +63,11 @@ export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
 				sx={{
 					backgroundColor: primaryColour,
 					color: '#ffffff',
+					width: '32px',
+					height: '32px',
+					minHeight: 'unset',
+					padding: '4px',
+					fontSize: '12px',
 					'&:hover': {
 						backgroundColor: primaryColour,
 					},

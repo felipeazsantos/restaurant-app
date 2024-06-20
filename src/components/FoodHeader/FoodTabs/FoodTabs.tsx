@@ -29,8 +29,19 @@ export const FoodTabs: FC = (): ReactElement => {
     };
 
     const renderTab = (detail: MenuDetails) => {
-        const tabStyle = { flexGrow: 1, maxWidth: 'none', marginLeft: 'inherited' }
-        return <Tab key={detail.id} label={detail.name} sx={tabStyle} />
+        return (
+            <Tab
+                key={detail.id}
+                label={detail.name}
+                sx={{
+                    flexGrow: 1,
+                    maxWidth: 'none',
+                    marginLeft: 'inherited',
+                    textTransform: 'none',
+                    fontSize: '16px'
+                }}
+            />
+        )
     }
 
     const renderCustomTabPanel = (detail: MenuDetails, index: number) => {
@@ -45,7 +56,23 @@ export const FoodTabs: FC = (): ReactElement => {
     return (
         <Box>
             <Box sx={{ width: '100%' }} padding="0px 16px 24px 16px">
-                <Tabs value={value} onChange={handleChange} sx={{ display: 'flex', justifyContent: 'space-around' }}>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        '& .MuiTabs-indicator': {
+                            backgroundColor: '#121212',
+                        },
+                        '& .MuiTab-root': {
+                            color: '#121212',
+                            '&.Mui-selected': {
+                                color: '#121212',
+                            },
+                        },
+                    }}
+                >
                     {menuDetails.map(renderTab)}
                 </Tabs>
             </Box>

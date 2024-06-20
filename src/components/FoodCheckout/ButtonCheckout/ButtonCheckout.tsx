@@ -30,7 +30,10 @@ export const ButtonCheckout: FC<IButtonCheckout> = (props): ReactElement => {
                     },
                     width: "100%",
                     textTransform: 'none',
-                    fontSize: '15px'
+                    fontSize: '15px',
+                    height: '40px',
+                    minHeight: 'unset',
+                    padding: '4px',
                 }}
                 variant="extended"
                 size="small"
