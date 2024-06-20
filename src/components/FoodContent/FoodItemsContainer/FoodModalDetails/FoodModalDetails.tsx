@@ -17,7 +17,7 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
     } = props;
 
     const renderMenuItemModifiers = (modifier: MenuItemModifiers) => {
-        return <FoodModifiersContainer key={modifier.id} modifier={modifier} />
+        return <FoodModifiersContainer key={modifier.id} modifier={modifier} menuItem={menuItem} />
     }
 
     const renderItemNoModifier = () => {

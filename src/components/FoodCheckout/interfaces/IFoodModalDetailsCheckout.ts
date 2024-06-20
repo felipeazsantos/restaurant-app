@@ -1,6 +1,7 @@
-import { MenuModifiersItem } from "../../../types/MenuDetails";
+import { MenuItem, MenuModifiersItem } from "../../../types/MenuDetails";
 
 export interface IFoodModalDetailsCheckout {
     price?: number;
     selectedModifier?: MenuModifiersItem;
+    menuItem?: MenuItem;
 }

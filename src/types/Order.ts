@@ -4,4 +4,5 @@ export interface IOrder {
     quantity?: number;
     price?: number;
     item?: MenuModifiersItem;
+    menuItemName?: string;
 }
