@@ -6,6 +6,7 @@ import { IFoodModalDetailsCheckout } from '../interfaces/IFoodModalDetailsChecko
 import { useDispatch } from 'react-redux';
 import { ActionType } from '../../../types/Reducers';
 import { IOrder } from '../../../types/Order';
+import { createOrder } from '../helpers/createOrder';
 
 export const FoodModalDetailsCheckout: FC<IFoodModalDetailsCheckout> = (props): ReactElement => {
     const [counter, setCounter] = useState<number>(1);
@@ -13,10 +14,7 @@ export const FoodModalDetailsCheckout: FC<IFoodModalDetailsCheckout> = (props): 
     const dispatch = useDispatch();
 
     const handleButtonCheckoutClick = () => {
-        const order: IOrder = {
-            quantity: counter,
-            item: selectedModifier
-        }
+        const order: IOrder = createOrder(counter, price, selectedModifier);
         dispatch({
             type: ActionType.SET_ORDERS,
             payload: order
