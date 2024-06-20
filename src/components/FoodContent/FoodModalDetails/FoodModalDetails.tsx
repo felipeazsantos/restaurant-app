@@ -1,8 +1,9 @@
-import { Avatar, Box, Modal, Typography } from '@mui/material';
+import { Avatar, Box, IconButton, Modal, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { IFoodModalDetails } from '../interfaces/IFoodModalDetails';
 import { MenuItemModifiers } from '../../../types/MenuDetails';
 import { FoodModifiersContainer } from '../FoodModifiersContainer/FoodModifiersContainer';
+import { Cancel } from '@mui/icons-material';
 
 const modalStyle = {
     position: 'absolute',
@@ -53,7 +54,7 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
             onClose={handleModalClose}
         >
             <Box sx={modalStyle}>
-                <Box>
+                <Box position="relative">
                     <Avatar
                         src={imageUrl}
                         variant="square"
@@ -62,6 +63,11 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
                             height: '100%'
                         }}
                     />
+                    <Box position="absolute" top="30px" right="5px">
+                        <IconButton onClick={handleModalClose}>
+                            <Cancel sx={{ color: '#ffffff', fontSize: '28px', cursor: 'pointer' }} />
+                        </IconButton>
+                    </Box>
                 </Box>
                 <Box padding="16px">
                     <Typography variant="h3" fontSize="28px" fontWeight="bold" paddingBottom="4px">
