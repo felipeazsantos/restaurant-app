@@ -6,7 +6,7 @@ import { useWebSettings } from "../../../hooks/useWebSettings";
 
 
 export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
-	const { counter, setCounter } = props;
+	const { counter, setCounter, height, width, position, iconFontSize, counterFontSize } = props;
 	const disabledBgColor = '#DADADA'
 	const [removeBgColor, setRemoveBgColor] = useState<string>(disabledBgColor);
 	const { primaryColour } = useWebSettings();
@@ -26,7 +26,7 @@ export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
 		<Box
 			display="flex"
 			flexDirection="row"
-			justifyContent="center"
+			justifyContent={position}
 			alignItems="center"
 			padding="16px 24px"
 		>
@@ -34,11 +34,10 @@ export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
 				sx={{
 					backgroundColor: removeBgColor,
 					color: '#ffffff',
-					width: '32px',
-					height: '32px',
+					width,
+					height,
 					minHeight: 'unset',
 					padding: '4px',
-					fontSize: '12px',
 					'&:hover': {
 						backgroundColor: removeBgColor,
 					},
@@ -54,20 +53,19 @@ export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
 				disabled={counter === 1}
 				onClick={minus}
 			>
-				<Remove />
+				<Remove sx={{ fontSize: iconFontSize }} />
 			</Fab>
-			<Typography padding="0 30px" fontWeight="600" fontSize="24px">
+			<Typography padding="0 30px" fontWeight="600" fontSize={counterFontSize}>
 				{counter}
 			</Typography>
 			<Fab
 				sx={{
 					backgroundColor: primaryColour,
 					color: '#ffffff',
-					width: '32px',
-					height: '32px',
+					width,
+					height,
 					minHeight: 'unset',
 					padding: '4px',
-					fontSize: '12px',
 					'&:hover': {
 						backgroundColor: primaryColour,
 					},
@@ -83,7 +81,7 @@ export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
 				aria-label="add"
 				onClick={plus}
 			>
-				<Add />
+				<Add sx={{ fontSize: iconFontSize }} />
 			</Fab>
 
 		</Box>

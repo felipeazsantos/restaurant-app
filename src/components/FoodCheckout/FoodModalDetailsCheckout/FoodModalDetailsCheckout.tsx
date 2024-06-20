@@ -23,7 +23,15 @@ export const FoodModalDetailsCheckout: FC<IFoodModalDetailsCheckout> = (props): 
 
     return (
         <Box>
-            <ControlQuantity counter={counter} setCounter={setCounter} />
+            <ControlQuantity
+                counter={counter}
+                setCounter={setCounter}
+                height="32px"
+                width="32px"
+                iconFontSize="28px"
+                counterFontSize="24px"
+                position="center"
+            />
             <ButtonCheckout
                 counter={counter}
                 price={price}

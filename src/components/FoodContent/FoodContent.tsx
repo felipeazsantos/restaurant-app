@@ -10,21 +10,16 @@ export const FoodContent: FC<IFoodContent> = (props): ReactElement => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const orders = useOrders();
 
-    const handleModalClose = () => {
-        setModalOpen(false);
-    }
-
-    const handleButtonCheckoutClick = () => {
-
-    }
+    const handleModalClose = () => setModalOpen(false);
+    const handleButtonCheckoutClick = () => setModalOpen(true);
 
     return (
         <>
             <FoodItemContainer {...props} />
             <Box bgcolor="#F8F9FA" paddingTop="24px">
-                {orders.length && <ButtonCheckout counter={orders.length} handleClick={handleButtonCheckoutClick} buttonText="Your basket" />}
+                {orders.length > 0 && <ButtonCheckout counter={orders.length} handleClick={handleButtonCheckoutClick} buttonText="Your basket" />}
             </Box>
-            <FoodModalBasket open={modalOpen} onClose={handleModalClose} />
+            <FoodModalBasket open={modalOpen} onClose={handleModalClose} orders={orders} />
         </>
     )
 }

@@ -9,9 +9,10 @@ const modalStyle = {
     transform: 'translate(-50%, -50%)',
     width: '100%',
     height: '100%',
-    bgcolor: 'background.paper',
+    bgcolor: '#F8F9FA',
     boxShadow: 24,
-    overflow: 'scroll'
+    overflowY: 'scroll',
+    overflowX: 'hidden'
 };
 
 export const CustomModal: FC<ICustomModal> = (props): ReactElement => {
