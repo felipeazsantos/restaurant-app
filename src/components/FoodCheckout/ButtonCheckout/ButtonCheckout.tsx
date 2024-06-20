@@ -5,7 +5,17 @@ import { IButtonCheckout } from '../interfaces/IButtonCheckout';
 
 export const ButtonCheckout: FC<IButtonCheckout> = (props): ReactElement => {
     const { primaryColour } = useWebSettings();
-    const { counter = 0, price = 0 } = props;
+    const { counter = 0, price = 0, buttonText, handleClick } = props;
+
+    const renderButtonText = (): React.ReactNode => {
+        if (counter && price) {
+            return <span>{buttonText} • R${price * counter}</span>
+        } else if (counter) {
+            return <span>{buttonText} • {counter} item(s)</span>
+        } else {
+            return <span>{buttonText}</span>
+        }
+    }
 
     return (
         <Box
@@ -16,6 +26,7 @@ export const ButtonCheckout: FC<IButtonCheckout> = (props): ReactElement => {
             padding="0 16px 24px 16px"
         >
             <Fab
+                onClick={handleClick}
                 sx={{
                     backgroundColor: primaryColour,
                     color: '#ffffff',
@@ -38,7 +49,7 @@ export const ButtonCheckout: FC<IButtonCheckout> = (props): ReactElement => {
                 variant="extended"
                 size="small"
             >
-                Add to Order - R${price * counter}
+                {renderButtonText()}
             </Fab>
         </Box>
     )

@@ -6,9 +6,10 @@ import { FoodModifierHeader } from '../FoodModifierHeader/FoodModifierHeader';
 import { FoodModalDetailsCheckout } from '../../FoodCheckout/FoodModalDetailsCheckout/FoodModalDetailsCheckout';
 
 export const FoodModifiersContainer: FC<IFoodModifiersContainer> = (props): ReactElement => {
-    const [positionSelected, setPositionSelected] = useState<number>(0);
-    const [price, setPrice] = useState<number>(0);
     const { modifier } = props;
+    const [positionSelected, setPositionSelected] = useState<number>(0);
+    const [selectedModifier, setSelectedModifier] = useState<MenuModifiersItem>({});
+    const [price, setPrice] = useState<number>(0);
 
     const renderModifiers = (modifierItem: MenuModifiersItem, index: number) => {
         return (
@@ -25,16 +26,16 @@ export const FoodModifiersContainer: FC<IFoodModifiersContainer> = (props): Reac
 
     useEffect(() => {
         if (modifier?.items) {
-            const selectedModifier = modifier.items[positionSelected];
+            setSelectedModifier(modifier.items[positionSelected]);
             setPrice(selectedModifier?.price || 0);
         }
-    }, [positionSelected, modifier?.items]);
+    }, [positionSelected, modifier?.items, selectedModifier?.price]);
 
     return (
         <>
             <FoodModifierHeader modifier={modifier} />
             {modifier?.items?.map(renderModifiers)}
-            <FoodModalDetailsCheckout price={price} />
+            <FoodModalDetailsCheckout price={price} selectedModifier={selectedModifier} />
         </>
     )
 }
