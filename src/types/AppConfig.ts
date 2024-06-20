@@ -1,5 +1,5 @@
 export interface AppConfigWebSettings {
-    backgroundColor?: string;
+    backgroundColour?: string;
     navBackgroundColour?: string;
     primaryColour?: string;
     primaryColourHover?: string;

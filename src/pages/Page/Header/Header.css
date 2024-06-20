@@ -1,32 +1,8 @@
 .header {
 	position: relative;
 }
-.header-nav {
-	height: 10vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
-}
 
-.header-nav__menu-text h1 {
-	font-weight: 500;
-	font-size: 18px;
-	color: #ffffff;
-}
-
-.header-nav__menu-icon {
-	position: absolute;
-	right: 10px;
-	font-size: 20px;
-	color: #ffffff;
-}
-
-.header-image-container {
-	overflow: hidden;
-}
-
-.header-image-container img {
+.header-image-container_img {
 	position: relative;
 	height: auto;
 	left: 50%;
