@@ -6,9 +6,9 @@ import { useWebSettings } from "../../../hooks/useWebSettings";
 
 
 export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
+	const { counter, setCounter } = props;
 	const disabledBgColor = '#DADADA'
 	const [removeBgColor, setRemoveBgColor] = useState<string>(disabledBgColor);
-	const [counter, setCounter] = useState<number>(1);
 	const { primaryColour } = useWebSettings();
 
 	const plus = () => setCounter(counter + 1);

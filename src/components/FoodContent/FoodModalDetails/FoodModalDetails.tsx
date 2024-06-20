@@ -31,6 +31,22 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
         return <FoodModifiersContainer key={modifier.id} modifier={modifier} />
     }
 
+    const renderItemNoModifier = () => {
+        const modifier: MenuItemModifiers = {
+            name: 'Choose an item',
+            maxChoices: 1,
+            id: menuItem?.id,
+            items: [
+                {
+                    id: menuItem?.id,
+                    name: `1 ${menuItem?.name}`,
+                    price: menuItem?.price
+                }
+            ]
+        }
+        return <FoodModifiersContainer key={modifier.id} modifier={modifier} />
+    }
+
     return (
         <Modal
             open={modalOpen}
@@ -56,7 +72,7 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
                     </Typography>
                 </Box>
                 <Box>
-                    {menuItem?.modifiers?.map(renderMenuItemModifiers)}
+                    {menuItem?.modifiers ? menuItem?.modifiers?.map(renderMenuItemModifiers) : renderItemNoModifier()}
                 </Box>
             </Box>
         </Modal>
