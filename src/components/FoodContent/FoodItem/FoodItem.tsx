@@ -49,7 +49,7 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
                     </Grid>
                 </Grid>
             </div>
-            <FoodModalDetails {...props} modalOpen={modalOpen} handleModalClose={handleModalClose} />
+            <FoodModalDetails {...props} open={modalOpen} onClose={handleModalClose} />
         </>
     )
 }

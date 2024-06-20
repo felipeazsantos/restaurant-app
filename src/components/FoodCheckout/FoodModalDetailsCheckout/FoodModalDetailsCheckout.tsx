@@ -4,7 +4,6 @@ import { ControlQuantity } from '../../Common/ControlQuantity/ControlQuantity';
 import { ButtonCheckout } from '../ButtonCheckout/ButtonCheckout';
 import { IFoodModalDetailsCheckout } from '../interfaces/IFoodModalDetailsCheckout';
 
-
 export const FoodModalDetailsCheckout: FC<IFoodModalDetailsCheckout> = (props): ReactElement => {
     const [counter, setCounter] = useState<number>(1);
     const { price } = props;

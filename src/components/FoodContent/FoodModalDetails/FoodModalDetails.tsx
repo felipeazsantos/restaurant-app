@@ -1,22 +1,10 @@
-import { Avatar, Box, IconButton, Modal, Typography } from '@mui/material';
+import { Avatar, Box, IconButton, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { IFoodModalDetails } from '../interfaces/IFoodModalDetails';
 import { MenuItemModifiers } from '../../../types/MenuDetails';
 import { FoodModifiersContainer } from '../FoodModifiersContainer/FoodModifiersContainer';
 import { Cancel } from '@mui/icons-material';
-
-const modalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '100%',
-    height: '100%',
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    overflow: 'scroll'
-};
-
+import { CustomModal } from '../../Common/CustomModal/CustomModal';
 
 export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => {
     const {
@@ -24,8 +12,8 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
         description,
         imageUrl,
         menuItem,
-        modalOpen,
-        handleModalClose
+        open,
+        onClose
     } = props;
 
     const renderMenuItemModifiers = (modifier: MenuItemModifiers) => {
@@ -49,38 +37,36 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
     }
 
     return (
-        <Modal
-            open={modalOpen}
-            onClose={handleModalClose}
+        <CustomModal
+            open={open}
+            onClose={onClose}
         >
-            <Box sx={modalStyle}>
-                <Box position="relative">
-                    <Avatar
-                        src={imageUrl}
-                        variant="square"
-                        sx={{
-                            width: '100%',
-                            height: '100%'
-                        }}
-                    />
-                    <Box position="absolute" top="30px" right="5px">
-                        <IconButton onClick={handleModalClose}>
-                            <Cancel sx={{ color: '#ffffff', fontSize: '28px', cursor: 'pointer' }} />
-                        </IconButton>
-                    </Box>
-                </Box>
-                <Box padding="16px">
-                    <Typography variant="h3" fontSize="28px" fontWeight="bold" paddingBottom="4px">
-                        {name}
-                    </Typography>
-                    <Typography>
-                        {description}
-                    </Typography>
-                </Box>
-                <Box>
-                    {menuItem?.modifiers ? menuItem?.modifiers?.map(renderMenuItemModifiers) : renderItemNoModifier()}
+            <Box position="relative">
+                <Avatar
+                    src={imageUrl}
+                    variant="square"
+                    sx={{
+                        width: '100%',
+                        height: '100%'
+                    }}
+                />
+                <Box position="absolute" top="30px" right="5px">
+                    <IconButton onClick={onClose}>
+                        <Cancel sx={{ color: '#ffffff', fontSize: '28px', cursor: 'pointer' }} />
+                    </IconButton>
                 </Box>
             </Box>
-        </Modal>
+            <Box padding="16px">
+                <Typography variant="h3" fontSize="28px" fontWeight="bold" paddingBottom="4px">
+                    {name}
+                </Typography>
+                <Typography>
+                    {description}
+                </Typography>
+            </Box>
+            <Box>
+                {menuItem?.modifiers ? menuItem?.modifiers?.map(renderMenuItemModifiers) : renderItemNoModifier()}
+            </Box>
+        </CustomModal>
     );
 }
