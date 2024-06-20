@@ -6,6 +6,8 @@ export interface IControlQuantity {
     height: string;
     width: string;
     iconFontSize?: string;
-    counterFontSize?: string;
+    counterFontSize: string;
+    counterPadding: string;
+    boxPadding: string;
     position: string;
 }

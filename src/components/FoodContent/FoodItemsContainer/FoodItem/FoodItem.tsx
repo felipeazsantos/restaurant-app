@@ -13,7 +13,7 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
         <>
             <div onClick={handleModalOpen}>
                 <Grid container spacing={2} marginBottom="10px" paddingRight="40px">
-                    <Grid item xs={8}>
+                    <Grid item xs={8} md={11}>
                         <Typography fontWeight="500" fontSize="16px" color="#121212">
                             {name}
                         </Typography>
@@ -36,7 +36,7 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
                             R${price}
                         </Typography>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={4} md={1}>
                         <Avatar
                             src={imageUrl}
                             alt={name}

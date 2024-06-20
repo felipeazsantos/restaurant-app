@@ -6,7 +6,9 @@ import { useWebSettings } from "../../../hooks/useWebSettings";
 
 
 export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
-	const { counter, setCounter, height, width, position, iconFontSize, counterFontSize } = props;
+	const { counter, setCounter, height, width, position, iconFontSize, counterFontSize,
+		counterPadding, boxPadding
+	} = props;
 	const disabledBgColor = '#DADADA'
 	const [removeBgColor, setRemoveBgColor] = useState<string>(disabledBgColor);
 	const { primaryColour } = useWebSettings();
@@ -28,7 +30,7 @@ export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
 			flexDirection="row"
 			justifyContent={position}
 			alignItems="center"
-			padding="16px 24px"
+			padding={boxPadding}
 		>
 			<Fab
 				sx={{
@@ -55,7 +57,7 @@ export const ControlQuantity: FC<IControlQuantity> = (props): ReactElement => {
 			>
 				<Remove sx={{ fontSize: iconFontSize }} />
 			</Fab>
-			<Typography padding="0 30px" fontWeight="600" fontSize={counterFontSize}>
+			<Typography padding={counterPadding} fontWeight="600" fontSize={counterFontSize}>
 				{counter}
 			</Typography>
 			<Fab

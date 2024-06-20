@@ -9,26 +9,30 @@ export const FoodModalBasketContent: FC = (): ReactElement => {
 
     return (
         <Box bgcolor="#ffffff">
-            <Box>
-                <Box>
+            <Box pb="10px">
+                <Box padding="16px 24px 0 24px">
+                    <Box display="flex" justifyContent="space-between">
+                        <Typography color="#121212" fontWeight="400">
+                            Name
+                        </Typography>
+                        <Typography color="#121212" fontWeight="400">
+                            R$35,00
+                        </Typography>
+                    </Box>
                     <Typography>
-                        Name
-                    </Typography>
-                    <Typography>
-                        R$35,00
+                        meats
                     </Typography>
                 </Box>
-                <Typography>
-                    meats
-                </Typography>
                 <ControlQuantity
                     counter={counter}
                     setCounter={setCounter}
-                    height="20px"
-                    width="20px"
+                    height="24px"
+                    width="24px"
                     position="start"
-                    iconFontSize="8px"
-                    counterFontSize="10px"
+                    iconFontSize="20px"
+                    counterFontSize="14px"
+                    counterPadding="0 16px"
+                    boxPadding="10px 24px"
                 />
             </Box>
         </Box>

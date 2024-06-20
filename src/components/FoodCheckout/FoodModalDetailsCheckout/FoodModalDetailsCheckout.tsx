@@ -30,7 +30,9 @@ export const FoodModalDetailsCheckout: FC<IFoodModalDetailsCheckout> = (props): 
                 width="32px"
                 iconFontSize="28px"
                 counterFontSize="24px"
+                counterPadding="0 30px"
                 position="center"
+                boxPadding="16px 24px"
             />
             <ButtonCheckout
                 counter={counter}
