@@ -2,9 +2,11 @@ import React, { FC, ReactElement, useState } from 'react';
 import { Box, Tabs, Tab } from '@mui/material';
 import { ICustomTabPanel } from '../interfaces/ICustomTabPanel';
 import { FoodContent } from '../../FoodContent/FoodContent';
+import { MenuDetails, MenuItem } from '../../../types/MenuDetails';
+import { useMenuDetails } from '../../../hooks/useMenuDetails';
 
 function CustomTabPanel(props: ICustomTabPanel) {
-    const { children, value, index, ...other } = props;
+    const { children, value, index } = props;
 
     return (
         <div
@@ -20,34 +22,37 @@ function CustomTabPanel(props: ICustomTabPanel) {
 
 export const FoodTabs: FC = (): ReactElement => {
     const [value, setValue] = useState(0);
+    const menuDetails: MenuDetails[] = useMenuDetails();
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
+    const renderTab = (detail: MenuDetails, index: number) => {
+        const tabStyle = { flexGrow: 1, maxWidth: 'none', marginLeft: 'inherited' }
+        if (index === 1) {
+            tabStyle.marginLeft = '10px';
+        }
+        return <Tab label={detail.name} sx={tabStyle} />
+    }
+
+    const renderCustomTabPanel = (detail: MenuDetails, index: number) => {
+        const items = detail?.items
+        const sectionTitle = detail.name || ""
+        return (
+            <CustomTabPanel value={value} index={index}>
+                <FoodContent items={items} title={sectionTitle} />
+            </CustomTabPanel>
+        )
+    }
     return (
         <Box>
             <Box sx={{ width: '100%' }} padding="0px 16px 24px 16px">
-                <Tabs value={value} onChange={handleChange}
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'space-around',
-                    }}
-                >
-                    <Tab label="Item One" sx={{ flexGrow: 1, maxWidth: 'none' }} />
-                    <Tab label="Item Two" sx={{ flexGrow: 1, maxWidth: 'none', marginLeft: '10px' }} />
-                    <Tab label="Item Three" sx={{ flexGrow: 1, maxWidth: 'none' }} />
+                <Tabs value={value} onChange={handleChange} sx={{ display: 'flex', justifyContent: 'space-around' }}>
+                    {menuDetails.map(renderTab)}
                 </Tabs>
             </Box>
-            <CustomTabPanel value={value} index={0}>
-                <FoodContent />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-                <FoodContent />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-                <FoodContent />
-            </CustomTabPanel>
+            {menuDetails.map(renderCustomTabPanel)}
         </Box >
     )
 }

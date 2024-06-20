@@ -7,7 +7,7 @@ export interface MenuDetails {
     items?: MenuItem[];
 }
 
-interface MenuItem {
+export interface MenuItem {
     id?: number;
     name?: string;
     description?: string;

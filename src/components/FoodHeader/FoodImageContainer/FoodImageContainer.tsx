@@ -1,14 +1,11 @@
 import React, { FC, ReactElement } from 'react';
 import { Box } from '@mui/material';
 import { FoodImage } from '../FoodImage/FoodImage';
-import { RootState } from '../../../store/store';
-import { useSelector } from 'react-redux';
 import { MenuDetails } from '../../../types/MenuDetails';
+import { useMenuDetails } from '../../../hooks/useMenuDetails';
 
 export const FoodImageContainer: FC = (): ReactElement => {
-    const store = useSelector((state: RootState) => state.menuDetailsReducer);
-    const menuDetails: MenuDetails[] = Object.assign([], store.menuDetails);
-
+    const menuDetails: MenuDetails[] = useMenuDetails();
     const renderImage = (detail: MenuDetails) => {
         const imageUrl = detail?.images ? detail.images[0].image : ""
         const imageId = detail?.images ? detail.images[0].id : ""
