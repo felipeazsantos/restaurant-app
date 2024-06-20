@@ -13,6 +13,7 @@ export const FoodItemContainer: FC<IFoodItemContainer> = (props): ReactElement =
         const imageUrl = images ? images[0].image : ""
         return (
             <FoodItem
+                key={foodItem.id}
                 name={name}
                 description={description}
                 price={price}

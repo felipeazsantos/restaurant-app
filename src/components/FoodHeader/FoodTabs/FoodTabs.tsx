@@ -33,14 +33,14 @@ export const FoodTabs: FC = (): ReactElement => {
         if (index === 1) {
             tabStyle.marginLeft = '10px';
         }
-        return <Tab label={detail.name} sx={tabStyle} />
+        return <Tab key={detail.id} label={detail.name} sx={tabStyle} />
     }
 
     const renderCustomTabPanel = (detail: MenuDetails, index: number) => {
         const items = detail?.items
         const sectionTitle = detail.name || ""
         return (
-            <CustomTabPanel value={value} index={index}>
+            <CustomTabPanel key={detail.id} value={value} index={index}>
                 <FoodContent items={items} title={sectionTitle} />
             </CustomTabPanel>
         )
