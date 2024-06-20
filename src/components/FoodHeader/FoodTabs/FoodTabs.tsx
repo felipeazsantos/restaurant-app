@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useState } from 'react';
 import { Box, Tabs, Tab } from '@mui/material';
 import { ICustomTabPanel } from '../interfaces/ICustomTabPanel';
 import { FoodContent } from '../../FoodContent/FoodContent';
-import { MenuDetails, MenuItem } from '../../../types/MenuDetails';
+import { MenuDetails } from '../../../types/MenuDetails';
 import { useMenuDetails } from '../../../hooks/useMenuDetails';
 
 function CustomTabPanel(props: ICustomTabPanel) {

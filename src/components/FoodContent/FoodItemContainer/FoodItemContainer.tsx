@@ -9,7 +9,9 @@ export const FoodItemContainer: FC<IFoodItemContainer> = (props): ReactElement =
     const { title, items } = props;
 
     const renderFoodItem = (foodItem: MenuItem) => {
-
+        const { name, description, price, images } = foodItem;
+        const imageUrl = images ? images[0].image : ""
+        return <FoodItem name={name} description={description} price={price} imageUrl={imageUrl} />
     }
 
     return (
@@ -18,9 +20,7 @@ export const FoodItemContainer: FC<IFoodItemContainer> = (props): ReactElement =
                 <Typography variant="h6" height="28px">{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <FoodItem />
-                <FoodItem />
-                <FoodItem />
+                {items?.map(renderFoodItem)}
             </AccordionDetails>
         </Accordion>
     )

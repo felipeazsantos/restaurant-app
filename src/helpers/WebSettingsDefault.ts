@@ -1,5 +1,5 @@
 import { AppConfigWebSettings } from "../types/AppConfig";
-import bannerHeader from '../assets/images/bannerHeader.svg';
+import bannerHeader from '../assets/images/bannerHeader.png';
 
 export const webSettingsDefault: AppConfigWebSettings = {
     backgroundColor: "#ffffff",

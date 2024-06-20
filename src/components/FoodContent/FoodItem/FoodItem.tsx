@@ -1,29 +1,33 @@
-import { Grid, Typography } from '@mui/material';
+import { Avatar, Grid, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-import './FoodItem.css';
+import { IFoodItem } from '../interfaces/IFoodItem';
 
-export const FoodItem: FC = (): ReactElement => {
+export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
+    const { name, description, price, imageUrl } = props;
+
     return (
         <Grid container spacing={2} marginBottom="10px" paddingRight="40px">
             <Grid item xs={8}>
-                <Typography fontWeight="bold">Food Item Title</Typography>
+                <Typography fontWeight="bold">{name}</Typography>
                 <Typography sx={{
                     display: '-webkit-box',
                     overflow: 'hidden',
                     WebkitBoxOrient: 'vertical',
                     WebkitLineClamp: 2,
                     textOverflow: 'ellipsis'
-                }}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.</Typography>
-                <Typography>R$ 33,00</Typography>
+                }}> {description}</Typography>
+                <Typography>R$ {price}</Typography>
             </Grid>
             <Grid item xs={4}>
-                <div className="food-item__img-container">
-                    <img
-                        className="food-item__img"
-                        src="https://preodemo.gumlet.io/usr/venue/7602/section/646fbe4c64a6f.png"
-                        alt="top" />
-                </div>
+                <Avatar
+                    src={imageUrl}
+                    alt={name}
+                    variant="square"
+                    sx={{
+                        width: '128px',
+                        height: '85px',
+                        borderRadius: '6px'
+                    }} />
             </Grid>
         </Grid>
     )
