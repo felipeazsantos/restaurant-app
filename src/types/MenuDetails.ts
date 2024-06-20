@@ -26,7 +26,7 @@ interface MenuImage {
     image: string;
 }
 
-interface MenuItemModifiers {
+export interface MenuItemModifiers {
     id?: number;
     name?: string;
     minChoices?: number;
@@ -34,7 +34,7 @@ interface MenuItemModifiers {
     items?: MenuModifiersItem[];
 }
 
-interface MenuModifiersItem {
+export interface MenuModifiersItem {
     id?: number;
     name?: string;
     price?: number;

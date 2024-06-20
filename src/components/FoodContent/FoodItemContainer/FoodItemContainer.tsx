@@ -11,7 +11,14 @@ export const FoodItemContainer: FC<IFoodItemContainer> = (props): ReactElement =
     const renderFoodItem = (foodItem: MenuItem) => {
         const { name, description, price, images } = foodItem;
         const imageUrl = images ? images[0].image : ""
-        return <FoodItem name={name} description={description} price={price} imageUrl={imageUrl} />
+        return (
+            <FoodItem
+                name={name}
+                description={description}
+                price={price}
+                imageUrl={imageUrl}
+                menuItem={foodItem} />
+        )
     }
 
     return (
