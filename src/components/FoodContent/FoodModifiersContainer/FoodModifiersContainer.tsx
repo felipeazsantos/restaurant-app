@@ -1,8 +1,8 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { IFoodModifiersContainer } from '../interfaces/IFoodModifiersContainer';
 import { MenuModifiersItem } from '../../../types/MenuDetails';
-import { FoodModifierItem } from '../FoodModifierItem/FoodModifierItem';
-import { FoodModifierHeader } from '../FoodModifierHeader/FoodModifierHeader';
+import { FoodModifierItem } from './FoodModifierItem/FoodModifierItem';
+import { FoodModifierHeader } from './FoodModifierHeader/FoodModifierHeader';
 import { FoodModalDetailsCheckout } from '../../FoodCheckout/FoodModalDetailsCheckout/FoodModalDetailsCheckout';
 
 export const FoodModifiersContainer: FC<IFoodModifiersContainer> = (props): ReactElement => {

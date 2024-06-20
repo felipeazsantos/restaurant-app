@@ -1,5 +1,5 @@
 import React, { FC, ReactElement, useState } from 'react';
-import { FoodItemContainer } from './FoodItemContainer/FoodItemContainer';
+import { FoodItemsContainer } from './FoodItemsContainer/FoodItemsContainer';
 import { IFoodContent } from './interfaces/IFoodContent';
 import { FoodModalBasket } from '../FoodCheckout/FoodModalBasket/FoodModalBasket';
 import { ButtonCheckout } from '../FoodCheckout/ButtonCheckout/ButtonCheckout';
@@ -15,7 +15,7 @@ export const FoodContent: FC<IFoodContent> = (props): ReactElement => {
 
     return (
         <>
-            <FoodItemContainer {...props} />
+            <FoodItemsContainer {...props} />
             <Box bgcolor="#F8F9FA" paddingTop="24px">
                 {orders.length > 0 && <ButtonCheckout counter={orders.length} handleClick={handleButtonCheckoutClick} buttonText="Your basket" />}
             </Box>

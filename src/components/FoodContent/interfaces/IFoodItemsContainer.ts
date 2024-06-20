@@ -1,6 +1,6 @@
 import { MenuItem } from "../../../types/MenuDetails";
 
-export interface IFoodItemContainer {
+export interface IFoodItemsContainer {
     title?: string;
     items?: MenuItem[];
 }

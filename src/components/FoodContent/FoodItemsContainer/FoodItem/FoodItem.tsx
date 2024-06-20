@@ -1,6 +1,6 @@
 import { Avatar, Grid, Typography } from '@mui/material';
 import React, { FC, ReactElement, useState } from 'react';
-import { IFoodItem } from '../interfaces/IFoodItem';
+import { IFoodItem } from '../../interfaces/IFoodItem';
 import { FoodModalDetails } from '../FoodModalDetails/FoodModalDetails';
 
 export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
