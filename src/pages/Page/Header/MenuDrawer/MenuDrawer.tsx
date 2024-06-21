@@ -14,8 +14,8 @@ export const MenuDrawer: FC<IMenuDrawer> = (props): ReactElement => {
             open={drawerState}
             onClose={drawerClose}
         >
-            <Box>
-                <List>
+            <Box width="14vw" pl="10px" >
+                <List sx={{ width: '100%' }}>
                     <ListItem disablePadding>
                         <ListItemButton>
                             <ListItemIcon >

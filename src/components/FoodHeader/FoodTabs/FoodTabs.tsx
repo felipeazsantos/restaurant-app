@@ -6,6 +6,7 @@ import { MenuDetails } from '../../../types/MenuDetails';
 import { useMenuDetails } from '../../../hooks/useMenuDetails';
 import { useDispatch } from 'react-redux';
 import { ActionType } from '../../../types/Reducers';
+import { useIsMobScreen } from '../../../hooks/useIsMobScreen';
 
 function CustomTabPanel(props: ICustomTabPanel) {
     const { children, value, index } = props;
@@ -26,6 +27,7 @@ export const FoodTabs: FC = (): ReactElement => {
     const [value, setValue] = useState(0);
     const menuDetails: MenuDetails[] = useMenuDetails();
     const dispatch = useDispatch();
+    const isMobScreen = useIsMobScreen();
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -62,13 +64,14 @@ export const FoodTabs: FC = (): ReactElement => {
     }
     return (
         <Box>
-            <Box sx={{ width: '100%' }} padding="0px 16px 24px 16px">
+            <Box sx={{ width: '100%' }} p="0px 16px 24px 16px" bgcolor="#fff">
                 <Tabs
                     value={value}
                     onChange={handleChange}
                     sx={{
+                        width: isMobScreen ? 'inherited' : '41%',
                         display: 'flex',
-                        justifyContent: 'space-around',
+                        justifyContent: isMobScreen ? 'space-around' : 'start',
                         '& .MuiTabs-indicator': {
                             backgroundColor: '#121212',
                         },
