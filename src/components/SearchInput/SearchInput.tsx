@@ -12,7 +12,7 @@ export const SearchInput: FC = (): ReactElement => {
     }
 
     return (
-        <Box padding={isMobSecreen ? '16px' : '0'} py='16px'>
+        <Box padding={isMobSecreen ? '16px' : '0'} py='16px' bgcolor={isMobSecreen ? '#ffffff' : 'inherited'}>
             <OutlinedInput
                 value={searchText}
                 onChange={handleOnChange}

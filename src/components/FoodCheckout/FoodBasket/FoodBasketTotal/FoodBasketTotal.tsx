@@ -6,7 +6,7 @@ export const FoodBasketTotal: FC = (): ReactElement => {
     const total = useBasketTotal();
 
     return (
-        <Box padding="16px 24px">
+        <Box padding="16px 24px" bgcolor="#F8F9FA">
             <Box display="flex" justifyContent="space-between" pb="10px">
                 <Typography fontSize="16px" color="#121212" fontWeight="400">
                     Sub total

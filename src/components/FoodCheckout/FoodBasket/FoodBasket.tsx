@@ -1,4 +1,4 @@
-import { Box, Divider } from '@mui/material';
+import { Box, Card, Divider } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { FoodBasketHeader } from './FoodBasketHeader/FoodModalBasketHeader';
 import { FoodBasketContent } from './FoodBasketContent/FoodBasketContent';
@@ -15,12 +15,12 @@ export const FoodBasket: FC<IFoodBasket> = (props): ReactElement => {
     }
 
     return (
-        <Box position="relative">
+        <Box component={isMobScreen ? Box : Card}>
             <FoodBasketHeader onClose={onClose} />
             <Divider />
             <FoodBasketContent />
             {isMobScreen &&
-                <Box py="24px" position="absolute" bottom="0">
+                <Box py="24px">
                     <ButtonCheckout buttonText='Checkout now' handleClick={handleClickCheckout} />
                 </Box>
             }
