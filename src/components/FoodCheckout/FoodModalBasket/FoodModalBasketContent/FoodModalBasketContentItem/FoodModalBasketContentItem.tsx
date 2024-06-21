@@ -18,7 +18,7 @@ export const FoodModalBasketContentItem: FC<IFoodModalBasketContentItem> = (prop
                         {menuItemName}
                     </Typography>
                     <Typography color="#121212" fontWeight="400">
-                        R${price * quantity}
+                        R${price * counter}
                     </Typography>
                 </Box>
                 {hasModifier && <Typography color="#5F5F5F" variant="body2">{item?.name} (+R${price})</Typography>}

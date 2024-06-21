@@ -32,11 +32,20 @@ const menuDetailsReducer = (state = initState, action: MenuDetailsAction): Reduc
 const ordersReducers = (state = initState, action: OrdersAction): ReducerState => {
     switch (action.type) {
         case ActionType.SET_ORDERS:
-            console.log(state);
-            return {
-                ...state,
-                orders: [...state.orders, action.payload]
+            const orderUpdateIndex = state.orders.findIndex(order => order.modifierId === action.payload.modifierId);
+            if (orderUpdateIndex >= 0) {
+                state.orders[orderUpdateIndex] = action.payload
+                return {
+                    ...state,
+                    orders: [...state.orders]
+                }
+            } else {
+                return {
+                    ...state,
+                    orders: [...state.orders, action.payload]
+                }
             }
+
         default: return state;
     }
 }
