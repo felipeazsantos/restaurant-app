@@ -31,19 +31,34 @@ const menuDetailsReducer = (state = initState, action: MenuDetailsAction): Reduc
 
 const ordersReducers = (state = initState, action: OrdersAction): ReducerState => {
     switch (action.type) {
-        case ActionType.SET_ORDERS:
-            const orderUpdateIndex = state.orders.findIndex(order => order.modifierId === action.payload.modifierId);
-            if (orderUpdateIndex >= 0) {
-                state.orders[orderUpdateIndex] = action.payload
+        case ActionType.SET_ORDERS_INSERT:
+            const orderInsertIndex = state.orders.findIndex(order => order.modifierId === action.payload.modifierId);
+            if (orderInsertIndex >= 0) {
+                // order already exists then plus the quantity
+                const updateOrders = state.orders.map((order, index) => {
+                    if (index === orderInsertIndex) {
+                        action.payload.quantity += order.quantity;
+                        return action.payload;
+                    }
+                    return order;
+                });
                 return {
                     ...state,
-                    orders: [...state.orders]
+                    orders: updateOrders
                 }
             } else {
+                // order doesn't exists
                 return {
                     ...state,
                     orders: [...state.orders, action.payload]
                 }
+            }
+        case ActionType.SET_ORDERS_UPDATE_BASKET:
+            const orderUpdateIndex = state.orders.findIndex(order => order.modifierId === action.payload.modifierId);
+            const updateOrders = state.orders.map((order, index) => index === orderUpdateIndex ? action.payload : order);
+            return {
+                ...state,
+                orders: updateOrders
             }
 
         default: return state;

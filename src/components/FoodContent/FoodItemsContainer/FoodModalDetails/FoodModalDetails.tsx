@@ -34,12 +34,12 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
             items: [
                 {
                     id: menuItem?.id,
-                    name: `1 ${menuItem?.name}`,
+                    name: menuItem?.name,
                     price: menuItem?.price
                 }
             ]
         }
-        return <FoodModifiersContainer key={modifier.id} modifier={modifier} onClose={onClose} />
+        return <FoodModifiersContainer key={modifier.id} modifier={modifier} menuItem={menuItem} onClose={onClose} />
     }
 
     return (

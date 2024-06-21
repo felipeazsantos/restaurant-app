@@ -3,6 +3,7 @@ import React, { FC, ReactElement } from 'react';
 import { useOrders } from '../../../../hooks/useOrders';
 import { FoodModalBasketContentItem } from './FoodModalBasketContentItem/FoodModalBasketContentItem';
 import { IOrder } from '../../../../types/Order';
+import { FoodModalBasketTotal } from '../FoodModalBasketTotal/FoodModalBasketTotal';
 
 export const FoodModalBasketContent: FC = (): ReactElement => {
     const orders = useOrders();
@@ -12,8 +13,11 @@ export const FoodModalBasketContent: FC = (): ReactElement => {
     }
 
     return (
-        <Box bgcolor="#ffffff">
-            {orders.map(renderOrder)}
-        </Box>
+        <>
+            <Box bgcolor="#ffffff">
+                {orders.map(renderOrder)}
+            </Box>
+            <FoodModalBasketTotal />
+        </>
     )
 }

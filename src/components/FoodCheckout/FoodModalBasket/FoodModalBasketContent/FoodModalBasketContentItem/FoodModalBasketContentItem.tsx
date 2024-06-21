@@ -1,14 +1,34 @@
 import { Box, Typography } from '@mui/material';
-import React, { FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useRef, useState } from 'react';
 import { ControlQuantity } from '../../../../Common/ControlQuantity/ControlQuantity';
 import { IFoodModalBasketContentItem } from '../../../interfaces/IFoodModalBasketContentItem';
+import { useDispatch } from 'react-redux';
+import { ActionType } from '../../../../../types/Reducers';
+import { IOrder } from '../../../../../types/Order';
 
 
 export const FoodModalBasketContentItem: FC<IFoodModalBasketContentItem> = (props): ReactElement => {
     const { order } = props;
     const { item, price = 0, quantity = 0, menuItemName } = order;
     const [counter, setCounter] = useState<number>(quantity);
-    const hasModifier = menuItemName !== item?.name
+    const hasModifier = menuItemName !== item?.name;
+    const dispatch = useDispatch();
+
+    const initialCounterRef = useRef<number>(quantity);
+
+    useEffect(() => {
+        if (initialCounterRef.current !== counter) {
+            const orderUpdate: IOrder = {
+                ...order,
+                quantity: counter
+            }
+            dispatch({
+                type: ActionType.SET_ORDERS_UPDATE_BASKET,
+                payload: orderUpdate
+            });
+            initialCounterRef.current = counter;
+        }
+    }, [counter, dispatch, order])
 
     return (
         <Box pb="10px">
