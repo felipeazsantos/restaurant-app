@@ -3,32 +3,18 @@ import React, { FC, ReactElement, useEffect, useRef, useState } from 'react';
 import { ControlQuantity } from '../../../../Common/ControlQuantity/ControlQuantity';
 import { IFoodBasketContentItem } from '../../../interfaces/IFoodBasketContentItem';
 import { useDispatch } from 'react-redux';
-import { ActionType } from '../../../../../types/Reducers';
-import { IOrder } from '../../../../../types/Order';
+import { updateOrderQuantity } from '../../../helpers/updateOrderQuantity';
 
 
 export const FoodBasketContentItem: FC<IFoodBasketContentItem> = (props): ReactElement => {
     const { order } = props;
     const { item, price = 0, quantity = 0, menuItemName } = order;
     const [counter, setCounter] = useState<number>(quantity);
+    const initialCounterRef = useRef<number>(quantity);
     const hasModifier = menuItemName !== item?.name;
     const dispatch = useDispatch();
 
-    const initialCounterRef = useRef<number>(quantity);
-
-    useEffect(() => {
-        if (initialCounterRef.current !== counter) {
-            const orderUpdate: IOrder = {
-                ...order,
-                quantity: counter
-            }
-            dispatch({
-                type: ActionType.SET_ORDERS_UPDATE_BASKET,
-                payload: orderUpdate
-            });
-            initialCounterRef.current = counter;
-        }
-    }, [counter, dispatch, order])
+    useEffect(() => updateOrderQuantity(dispatch, initialCounterRef, counter, order), [counter, dispatch, order])
 
     return (
         <Box pb="10px">

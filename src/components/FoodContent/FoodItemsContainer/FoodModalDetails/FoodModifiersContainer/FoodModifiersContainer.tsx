@@ -1,28 +1,15 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 import { IFoodModifiersContainer } from '../../../interfaces/IFoodModifiersContainer';
 import { MenuModifiersItem } from '../../../../../types/MenuDetails';
-import { FoodModifierItem } from './FoodModifierItem/FoodModifierItem';
 import { FoodModifierHeader } from './FoodModifierHeader/FoodModifierHeader';
 import { FoodModalDetailsCheckout } from '../../../../FoodCheckout/FoodModalDetailsCheckout/FoodModalDetailsCheckout';
+import { renderModifiers } from '../../../helpers/renderModifiers';
 
 export const FoodModifiersContainer: FC<IFoodModifiersContainer> = (props): ReactElement => {
     const { modifier, menuItem, onClose } = props;
     const [positionSelected, setPositionSelected] = useState<number>(0);
     const [selectedModifier, setSelectedModifier] = useState<MenuModifiersItem>({});
     const [price, setPrice] = useState<number>(0);
-
-    const renderModifiers = (modifierItem: MenuModifiersItem, index: number) => {
-        return (
-            <React.Fragment key={modifierItem.id}>
-                <FoodModifierItem
-                    modifier={modifierItem}
-                    position={index}
-                    positionSelected={positionSelected}
-                    setPositionSelected={setPositionSelected}
-                />
-            </React.Fragment>
-        )
-    }
 
     useEffect(() => {
         if (modifier?.items) {
@@ -34,7 +21,7 @@ export const FoodModifiersContainer: FC<IFoodModifiersContainer> = (props): Reac
     return (
         <>
             <FoodModifierHeader modifier={modifier} />
-            {modifier?.items?.map(renderModifiers)}
+            {modifier?.items?.map((modifier, index) => renderModifiers(modifier, index, positionSelected, setPositionSelected))}
             <FoodModalDetailsCheckout
                 price={price}
                 selectedModifier={selectedModifier}

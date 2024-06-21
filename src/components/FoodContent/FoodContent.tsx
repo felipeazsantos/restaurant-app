@@ -32,7 +32,7 @@ export const FoodContent: FC<IFoodContent> = (props): ReactElement => {
                 >
                     {isMobSecreen && <Link color={primaryColour} fontWeight="bold">View allergy information</Link>}
                 </Box>
-                {orders.length > 0 && <ButtonCheckout counter={orders.length} handleClick={handleButtonCheckoutClick} buttonText="Your basket" />}
+                {orders.length > 0 && isMobSecreen && <ButtonCheckout counter={orders.length} handleClick={handleButtonCheckoutClick} buttonText="Your basket" />}
             </Box>
             {isMobSecreen && <FoodModalBasket open={modalOpen} onClose={handleModalClose} orders={orders} />}
         </>

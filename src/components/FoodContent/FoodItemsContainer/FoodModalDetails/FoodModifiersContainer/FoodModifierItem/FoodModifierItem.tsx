@@ -5,9 +5,7 @@ import { Box, Radio, Typography } from '@mui/material';
 export const FoodModifierItem: FC<IFoodModifier> = (props): ReactElement => {
     const { modifier, position, positionSelected, setPositionSelected } = props;
 
-    const handleRadioClick = () => {
-        setPositionSelected(position);
-    }
+    const handleRadioClick = () => setPositionSelected(position);
 
     return (
         <Box padding="16px 24px" display="flex" flexDirection="row">

@@ -1,23 +1,18 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { useOrders } from '../../../../hooks/useOrders';
-import { FoodBasketContentItem } from './FoodBasketContentItem/FoodModalBasketContentItem';
-import { IOrder } from '../../../../types/Order';
 import { FoodBasketTotal } from '../FoodBasketTotal/FoodBasketTotal';
+import { renderOrder } from '../../helpers/renderOrder';
 
 export const FoodBasketContent: FC = (): ReactElement => {
     const orders = useOrders();
 
-    const renderOrder = (order: IOrder) => {
-        return <FoodBasketContentItem order={order} key={order.item?.id} />
-    }
-
     return (
         <>
             <Box bgcolor="#ffffff">
-                {orders.map(renderOrder)}
+                {orders.length > 0 ? orders.map(renderOrder) : <Typography p="16px 24px">Your cart is empty</Typography>}
             </Box>
-            <FoodBasketTotal />
+            {orders.length > 0 && <FoodBasketTotal />}
         </>
     )
 }
