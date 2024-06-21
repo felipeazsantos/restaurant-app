@@ -6,7 +6,7 @@ import { FoodModifierHeader } from './FoodModifierHeader/FoodModifierHeader';
 import { FoodModalDetailsCheckout } from '../../FoodCheckout/FoodModalDetailsCheckout/FoodModalDetailsCheckout';
 
 export const FoodModifiersContainer: FC<IFoodModifiersContainer> = (props): ReactElement => {
-    const { modifier, menuItem } = props;
+    const { modifier, menuItem, onClose } = props;
     const [positionSelected, setPositionSelected] = useState<number>(0);
     const [selectedModifier, setSelectedModifier] = useState<MenuModifiersItem>({});
     const [price, setPrice] = useState<number>(0);
@@ -35,7 +35,11 @@ export const FoodModifiersContainer: FC<IFoodModifiersContainer> = (props): Reac
         <>
             <FoodModifierHeader modifier={modifier} />
             {modifier?.items?.map(renderModifiers)}
-            <FoodModalDetailsCheckout price={price} selectedModifier={selectedModifier} menuItem={menuItem} />
+            <FoodModalDetailsCheckout
+                price={price}
+                selectedModifier={selectedModifier}
+                menuItem={menuItem}
+                onClose={onClose} />
         </>
     )
 }

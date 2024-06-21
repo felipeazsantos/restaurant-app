@@ -4,4 +4,5 @@ export interface IFoodModalDetailsCheckout {
     price?: number;
     selectedModifier?: MenuModifiersItem;
     menuItem?: MenuItem;
+    onClose?: () => void;
 }

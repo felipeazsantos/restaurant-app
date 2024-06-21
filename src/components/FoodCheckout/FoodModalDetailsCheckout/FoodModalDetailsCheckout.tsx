@@ -10,15 +10,16 @@ import { createOrder } from '../helpers/createOrder';
 
 export const FoodModalDetailsCheckout: FC<IFoodModalDetailsCheckout> = (props): ReactElement => {
     const [counter, setCounter] = useState<number>(1);
-    const { price, selectedModifier, menuItem } = props;
+    const { price, selectedModifier, menuItem, onClose = () => { } } = props;
     const dispatch = useDispatch();
-
+    //
     const handleButtonCheckoutClick = () => {
         const order: IOrder = createOrder(counter, price, menuItem?.name, selectedModifier);
         dispatch({
             type: ActionType.SET_ORDERS,
             payload: order
         });
+        onClose();
     }
 
     return (

@@ -7,7 +7,7 @@ import { IFoodModalBasketContentItem } from '../../../interfaces/IFoodModalBaske
 export const FoodModalBasketContentItem: FC<IFoodModalBasketContentItem> = (props): ReactElement => {
     const { order } = props;
     const { item, price = 0, quantity = 0, menuItemName } = order;
-    const [counter, setCounter] = useState<number>(1);
+    const [counter, setCounter] = useState<number>(quantity);
     const hasModifier = menuItemName !== item?.name
 
     return (
@@ -21,7 +21,7 @@ export const FoodModalBasketContentItem: FC<IFoodModalBasketContentItem> = (prop
                         R${price * quantity}
                     </Typography>
                 </Box>
-                {hasModifier && <Typography color="#5F5F5F" variant="body2">{item?.name}</Typography>}
+                {hasModifier && <Typography color="#5F5F5F" variant="body2">{item?.name} (+R${price})</Typography>}
             </Box>
             <ControlQuantity
                 counter={counter}
