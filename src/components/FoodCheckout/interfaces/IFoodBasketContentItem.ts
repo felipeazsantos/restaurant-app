@@ -1,5 +1,5 @@
 import { IOrder } from "../../../types/Order";
 
-export interface IFoodModalBasketContentItem {
+export interface IFoodBasketContentItem {
     order: IOrder;
 }

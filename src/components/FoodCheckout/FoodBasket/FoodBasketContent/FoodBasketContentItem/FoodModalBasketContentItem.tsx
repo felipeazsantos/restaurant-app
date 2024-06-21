@@ -1,13 +1,13 @@
 import { Box, Typography } from '@mui/material';
 import React, { FC, ReactElement, useEffect, useRef, useState } from 'react';
 import { ControlQuantity } from '../../../../Common/ControlQuantity/ControlQuantity';
-import { IFoodModalBasketContentItem } from '../../../interfaces/IFoodModalBasketContentItem';
+import { IFoodBasketContentItem } from '../../../interfaces/IFoodBasketContentItem';
 import { useDispatch } from 'react-redux';
 import { ActionType } from '../../../../../types/Reducers';
 import { IOrder } from '../../../../../types/Order';
 
 
-export const FoodModalBasketContentItem: FC<IFoodModalBasketContentItem> = (props): ReactElement => {
+export const FoodBasketContentItem: FC<IFoodBasketContentItem> = (props): ReactElement => {
     const { order } = props;
     const { item, price = 0, quantity = 0, menuItemName } = order;
     const [counter, setCounter] = useState<number>(quantity);

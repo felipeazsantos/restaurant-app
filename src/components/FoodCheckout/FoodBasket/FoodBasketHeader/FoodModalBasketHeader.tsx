@@ -1,9 +1,9 @@
 import { Close } from '@mui/icons-material';
 import { Box, IconButton, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-import { IFoodModalBasketHeader } from '../../interfaces/IFoodModalBasketHeader';
+import { IFoodBasketHeader } from '../../interfaces/IFoodBasketHeader';
 
-export const FoodModalBasketHeader: FC<IFoodModalBasketHeader> = (props): ReactElement => {
+export const FoodBasketHeader: FC<IFoodBasketHeader> = (props): ReactElement => {
     const { onClose } = props;
     return (
         <Box

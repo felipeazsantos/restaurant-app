@@ -2,7 +2,7 @@ import { Box, Divider, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { useBasketTotal } from '../../../../hooks/useBasketTotal';
 
-export const FoodModalBasketTotal: FC = (props): ReactElement => {
+export const FoodBasketTotal: FC = (): ReactElement => {
     const total = useBasketTotal();
 
     return (

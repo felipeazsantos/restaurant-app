@@ -1,15 +1,15 @@
 import { Box } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { useOrders } from '../../../../hooks/useOrders';
-import { FoodModalBasketContentItem } from './FoodModalBasketContentItem/FoodModalBasketContentItem';
+import { FoodBasketContentItem } from './FoodBasketContentItem/FoodModalBasketContentItem';
 import { IOrder } from '../../../../types/Order';
-import { FoodModalBasketTotal } from '../FoodModalBasketTotal/FoodModalBasketTotal';
+import { FoodBasketTotal } from '../FoodBasketTotal/FoodBasketTotal';
 
-export const FoodModalBasketContent: FC = (): ReactElement => {
+export const FoodBasketContent: FC = (): ReactElement => {
     const orders = useOrders();
 
     const renderOrder = (order: IOrder) => {
-        return <FoodModalBasketContentItem order={order} key={order.item?.id} />
+        return <FoodBasketContentItem order={order} key={order.item?.id} />
     }
 
     return (
@@ -17,7 +17,7 @@ export const FoodModalBasketContent: FC = (): ReactElement => {
             <Box bgcolor="#ffffff">
                 {orders.map(renderOrder)}
             </Box>
-            <FoodModalBasketTotal />
+            <FoodBasketTotal />
         </>
     )
 }

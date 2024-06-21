@@ -4,6 +4,7 @@ import { IFoodItem } from '../../interfaces/IFoodItem';
 import { FoodModalDetails } from '../FoodModalDetails/FoodModalDetails';
 import { useOrderItemQuantity } from '../../../../hooks/useOrderItemQuantity';
 import { useWebSettings } from '../../../../hooks/useWebSettings';
+import { useIsMobScreen } from '../../../../hooks/useIsMobScreen';
 
 export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -12,14 +13,15 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
     const handleModalClose = () => setModalOpen(false);
     const orderItemQuantity = useOrderItemQuantity(orders, menuItem?.id);
     const { primaryColour } = useWebSettings();
+    const isMobScreen = useIsMobScreen();
 
     return (
         <>
             <div onClick={handleModalOpen}>
-                <Grid container spacing={2} marginBottom="10px" paddingRight="40px">
-                    <Grid item xs={8} md={11}>
+                <Grid container spacing={2} marginBottom={isMobScreen ? "10px" : "20px"} paddingRight={isMobScreen ? "40px" : "0"}>
+                    <Grid item xs={8} md={10}>
                         <Box display="flex" alignItems="center">
-                            {orderItemQuantity &&
+                            {orderItemQuantity > 0 &&
                                 <Typography
                                     borderRadius="4px"
                                     bgcolor={primaryColour}
@@ -53,7 +55,7 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
                             R${price}
                         </Typography>
                     </Grid>
-                    <Grid item xs={4} md={1}>
+                    <Grid item xs={4} md={2} >
                         <Avatar
                             src={imageUrl}
                             alt={name}
