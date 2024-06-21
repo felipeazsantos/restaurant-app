@@ -1,10 +1,11 @@
 import { combineReducers } from "redux";
-import { ActionType, WebSettingsAction, MenuDetailsAction, OrdersAction, ReducerState } from "../types/Reducers";
+import { ActionType, WebSettingsAction, MenuDetailsAction, OrdersAction, ReducerState, TabSelectedAction } from "../types/Reducers";
 
 const initState: ReducerState = {
     webSettings: {},
     menuDetails: {},
-    orders: []
+    orders: [],
+    tabSelected: 0
 }
 
 const webSettingsReducer = (state = initState, action: WebSettingsAction): ReducerState => {
@@ -65,10 +66,19 @@ const ordersReducers = (state = initState, action: OrdersAction): ReducerState =
     }
 }
 
+const tabSelectedReducer = (state = initState, action: TabSelectedAction): ReducerState => {
+    switch (action.type) {
+        case ActionType.SET_TAB_SELECTED:
+            return { ...state, tabSelected: action.payload }
+        default: return state;
+    }
+}
+
 const reducers = combineReducers({
     webSettingsReducer,
     menuDetailsReducer,
-    ordersReducers
+    ordersReducers,
+    tabSelectedReducer
 })
 
 export default reducers;

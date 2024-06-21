@@ -4,6 +4,8 @@ import { ICustomTabPanel } from '../interfaces/ICustomTabPanel';
 import { FoodContent } from '../../FoodContent/FoodContent';
 import { MenuDetails } from '../../../types/MenuDetails';
 import { useMenuDetails } from '../../../hooks/useMenuDetails';
+import { useDispatch } from 'react-redux';
+import { ActionType } from '../../../types/Reducers';
 
 function CustomTabPanel(props: ICustomTabPanel) {
     const { children, value, index } = props;
@@ -23,9 +25,14 @@ function CustomTabPanel(props: ICustomTabPanel) {
 export const FoodTabs: FC = (): ReactElement => {
     const [value, setValue] = useState(0);
     const menuDetails: MenuDetails[] = useMenuDetails();
+    const dispatch = useDispatch();
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
+        dispatch({
+            type: ActionType.SET_TAB_SELECTED,
+            payload: newValue
+        })
     };
 
     const renderTab = (detail: MenuDetails) => {
