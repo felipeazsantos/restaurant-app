@@ -1,27 +1,13 @@
 import React, { FC, ReactElement, useState } from 'react';
-import { Box, Tabs, Tab } from '@mui/material';
-import { ICustomTabPanel } from '../interfaces/ICustomTabPanel';
-import { FoodContent } from '../../FoodContent/FoodContent';
+import { Box, Tabs } from '@mui/material';
 import { MenuDetails } from '../../../types/MenuDetails';
 import { useMenuDetails } from '../../../hooks/useMenuDetails';
 import { useDispatch } from 'react-redux';
-import { ActionType } from '../../../types/Reducers';
 import { useIsMobScreen } from '../../../hooks/useIsMobScreen';
+import { handleTabsChange } from '../helpers/handleTabsChange';
+import { renderTab } from '../helpers/renderTab';
+import { renderCustomTabPanel } from '../helpers/renderCustomTabPanel';
 
-function CustomTabPanel(props: ICustomTabPanel) {
-    const { children, value, index } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-        >
-            {value === index && <Box>{children}</Box>}
-        </div>
-    );
-}
 
 export const FoodTabs: FC = (): ReactElement => {
     const [value, setValue] = useState(0);
@@ -29,47 +15,13 @@ export const FoodTabs: FC = (): ReactElement => {
     const dispatch = useDispatch();
     const isMobScreen = useIsMobScreen();
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-        dispatch({
-            type: ActionType.SET_TAB_SELECTED,
-            payload: newValue
-        })
-    };
-
-    const renderTab = (detail: MenuDetails) => {
-        return (
-            <Tab
-                key={detail.id}
-                label={detail.name}
-                sx={{
-                    flexGrow: 1,
-                    maxWidth: 'none',
-                    marginLeft: 'inherited',
-                    textTransform: 'none',
-                    fontSize: '16px'
-                }}
-            />
-        )
-    }
-
-    const renderCustomTabPanel = (detail: MenuDetails, index: number) => {
-        const items = detail?.items
-        const sectionTitle = detail.name || ""
-        return (
-            <CustomTabPanel key={detail.id} value={value} index={index}>
-                <FoodContent items={items} title={sectionTitle} />
-            </CustomTabPanel>
-        )
-    }
     return (
         <Box>
             <Box sx={{ width: '100%' }} p="0px 16px 24px 16px" bgcolor="#fff">
                 <Tabs
                     value={value}
-                    onChange={handleChange}
+                    onChange={(event, newValue) => handleTabsChange(dispatch, setValue, event, newValue)}
                     sx={{
-                        width: isMobScreen ? 'inherited' : '41%',
                         display: 'flex',
                         justifyContent: isMobScreen ? 'space-around' : 'start',
                         '& .MuiTabs-indicator': {
@@ -77,16 +29,17 @@ export const FoodTabs: FC = (): ReactElement => {
                         },
                         '& .MuiTab-root': {
                             color: '#121212',
+                            marginX: isMobScreen ? 'inherited' : '16px',
                             '&.Mui-selected': {
                                 color: '#121212',
                             },
                         },
                     }}
                 >
-                    {menuDetails.map(renderTab)}
+                    {menuDetails.map((detail) => renderTab(detail, isMobScreen))}
                 </Tabs>
             </Box>
-            {menuDetails.map(renderCustomTabPanel)}
+            {menuDetails.map((detail, number) => renderCustomTabPanel(detail, number, value))}
         </Box >
     )
 }

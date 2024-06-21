@@ -6,11 +6,13 @@ import { ButtonCheckout } from '../FoodCheckout/ButtonCheckout/ButtonCheckout';
 import { Box, Link } from '@mui/material';
 import { useOrders } from '../../hooks/useOrders';
 import { useWebSettings } from '../../hooks/useWebSettings';
+import { useIsMobScreen } from '../../hooks/useIsMobScreen';
 
 export const FoodContent: FC<IFoodContent> = (props): ReactElement => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     const orders = useOrders();
     const { primaryColour } = useWebSettings();
+    const isMobSecreen = useIsMobScreen();
 
     const handleModalClose = () => setModalOpen(false);
     const handleButtonCheckoutClick = () => setModalOpen(true);
@@ -28,11 +30,11 @@ export const FoodContent: FC<IFoodContent> = (props): ReactElement => {
                     alignItems="center"
                     bgcolor="#ffffff"
                 >
-                    <Link color={primaryColour} fontWeight="bold">View allergy information</Link>
+                    {isMobSecreen && <Link color={primaryColour} fontWeight="bold">View allergy information</Link>}
                 </Box>
                 {orders.length > 0 && <ButtonCheckout counter={orders.length} handleClick={handleButtonCheckoutClick} buttonText="Your basket" />}
             </Box>
-            <FoodModalBasket open={modalOpen} onClose={handleModalClose} orders={orders} />
+            {isMobSecreen && <FoodModalBasket open={modalOpen} onClose={handleModalClose} orders={orders} />}
         </>
     )
 }

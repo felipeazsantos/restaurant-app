@@ -10,7 +10,7 @@ export const Content: FC = (): ReactElement => {
 
     return (
         <main>
-            <Box bgcolor="#EEEEEE">
+            <Box bgcolor={isMobScreen ? "#F8F9FA" : "#EEEEEE"}>
                 <Grid container display="flex" justifyContent="center">
                     <Grid item md={1} />
                     <Grid item xs={12} md={9}>

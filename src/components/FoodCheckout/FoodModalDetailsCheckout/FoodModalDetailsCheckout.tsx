@@ -4,23 +4,14 @@ import { ControlQuantity } from '../../Common/ControlQuantity/ControlQuantity';
 import { ButtonCheckout } from '../ButtonCheckout/ButtonCheckout';
 import { IFoodModalDetailsCheckout } from '../interfaces/IFoodModalDetailsCheckout';
 import { useDispatch } from 'react-redux';
-import { ActionType } from '../../../types/Reducers';
-import { IOrder } from '../../../types/Order';
-import { createOrder } from '../helpers/createOrder';
+import { handleModalDetailsAddOrderClick } from '../helpers/handleModalDetailsAddOrderClick';
 
 export const FoodModalDetailsCheckout: FC<IFoodModalDetailsCheckout> = (props): ReactElement => {
     const [counter, setCounter] = useState<number>(1);
     const { price, selectedModifier, menuItem, onClose = () => { } } = props;
     const dispatch = useDispatch();
 
-    const handleModalDetailsAddOrderClick = () => {
-        const order: IOrder = createOrder(selectedModifier?.id, menuItem?.id, counter, price, menuItem?.name, selectedModifier);
-        dispatch({
-            type: ActionType.SET_ORDERS_INSERT,
-            payload: order
-        });
-        onClose();
-    }
+    const handleClick = () => handleModalDetailsAddOrderClick(dispatch, onClose, selectedModifier, menuItem, counter, price);
 
     return (
         <Box>
@@ -39,7 +30,7 @@ export const FoodModalDetailsCheckout: FC<IFoodModalDetailsCheckout> = (props): 
                 counter={counter}
                 price={price}
                 buttonText="Add to Order"
-                handleClick={handleModalDetailsAddOrderClick}
+                handleClick={handleClick}
             />
         </Box>
     )

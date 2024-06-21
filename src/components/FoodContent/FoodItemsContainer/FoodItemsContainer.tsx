@@ -2,26 +2,12 @@ import { ExpandMore } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { IFoodItemsContainer } from '../interfaces/IFoodItemsContainer';
-import { FoodItem } from './FoodItem/FoodItem';
 import { MenuItem } from '../../../types/MenuDetails';
+import { renderFoodItem } from '../helpers/renderFoodItem';
+
 
 export const FoodItemsContainer: FC<IFoodItemsContainer> = (props): ReactElement => {
     const { title, items, orders } = props;
-
-    const renderFoodItem = (foodItem: MenuItem) => {
-        const { name, description, price, images } = foodItem;
-        const imageUrl = images ? images[0].image : ""
-        return (
-            <FoodItem
-                key={foodItem.id}
-                name={name}
-                description={description}
-                price={price}
-                imageUrl={imageUrl}
-                orders={orders}
-                menuItem={foodItem} />
-        )
-    }
 
     return (
         <Accordion sx={{ border: 'none', boxShadow: 'none' }} defaultExpanded>
@@ -31,7 +17,7 @@ export const FoodItemsContainer: FC<IFoodItemsContainer> = (props): ReactElement
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
-                {items?.map(renderFoodItem)}
+                {items?.map((foodItem: MenuItem) => renderFoodItem(foodItem, orders))}
             </AccordionDetails>
         </Accordion>
     )
