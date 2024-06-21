@@ -1,4 +1,5 @@
 import { MenuItem } from "../../../types/MenuDetails";
+import { IOrder } from "../../../types/Order";
 
 export interface IFoodItem {
     name?: string;
@@ -6,4 +7,5 @@ export interface IFoodItem {
     price?: number;
     imageUrl?: string;
     menuItem?: MenuItem;
+    orders: IOrder[];
 }

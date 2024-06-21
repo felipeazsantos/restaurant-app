@@ -1,22 +1,39 @@
-import { Avatar, Grid, Typography } from '@mui/material';
+import { Avatar, Box, Grid, Typography } from '@mui/material';
 import React, { FC, ReactElement, useState } from 'react';
 import { IFoodItem } from '../../interfaces/IFoodItem';
 import { FoodModalDetails } from '../FoodModalDetails/FoodModalDetails';
+import { useOrderItemQuantity } from '../../../../hooks/useOrderItemQuantity';
+import { useWebSettings } from '../../../../hooks/useWebSettings';
 
 export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const { name, description, price, imageUrl } = props;
+    const { name, description, price, imageUrl, menuItem, orders } = props;
     const handleModalOpen = () => setModalOpen(true);
     const handleModalClose = () => setModalOpen(false);
+    const orderItemQuantity = useOrderItemQuantity(orders, menuItem?.id);
+    const { primaryColour } = useWebSettings();
 
     return (
         <>
             <div onClick={handleModalOpen}>
                 <Grid container spacing={2} marginBottom="10px" paddingRight="40px">
                     <Grid item xs={8} md={11}>
-                        <Typography fontWeight="500" fontSize="16px" color="#121212">
-                            {name}
-                        </Typography>
+                        <Box display="flex" alignItems="center">
+                            {orderItemQuantity &&
+                                <Typography
+                                    borderRadius="4px"
+                                    bgcolor={primaryColour}
+                                    color="#ffffff"
+                                    p="0 5px"
+                                    mr="8px"
+                                    fontSize="12px"
+                                    fontWeight="bold">
+                                    {orderItemQuantity}
+                                </Typography>}
+                            <Typography fontWeight="500" fontSize="16px" color="#121212">
+                                {name}
+                            </Typography>
+                        </Box>
                         <Typography
                             variant="body2"
                             fontSize="16px"

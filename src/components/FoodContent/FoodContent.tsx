@@ -17,7 +17,7 @@ export const FoodContent: FC<IFoodContent> = (props): ReactElement => {
 
     return (
         <>
-            <FoodItemsContainer {...props} />
+            <FoodItemsContainer {...props} orders={orders} />
             <Box bgcolor="#F8F9FA" paddingTop="24px">
                 <Box
                     borderRadius="8px"

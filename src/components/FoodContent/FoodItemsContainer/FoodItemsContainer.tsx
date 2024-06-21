@@ -6,7 +6,7 @@ import { FoodItem } from './FoodItem/FoodItem';
 import { MenuItem } from '../../../types/MenuDetails';
 
 export const FoodItemsContainer: FC<IFoodItemsContainer> = (props): ReactElement => {
-    const { title, items } = props;
+    const { title, items, orders } = props;
 
     const renderFoodItem = (foodItem: MenuItem) => {
         const { name, description, price, images } = foodItem;
@@ -18,6 +18,7 @@ export const FoodItemsContainer: FC<IFoodItemsContainer> = (props): ReactElement
                 description={description}
                 price={price}
                 imageUrl={imageUrl}
+                orders={orders}
                 menuItem={foodItem} />
         )
     }

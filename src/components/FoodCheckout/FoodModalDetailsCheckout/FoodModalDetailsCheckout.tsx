@@ -14,7 +14,7 @@ export const FoodModalDetailsCheckout: FC<IFoodModalDetailsCheckout> = (props): 
     const dispatch = useDispatch();
 
     const handleModalDetailsAddOrderClick = () => {
-        const order: IOrder = createOrder(selectedModifier?.id, counter, price, menuItem?.name, selectedModifier);
+        const order: IOrder = createOrder(selectedModifier?.id, menuItem?.id, counter, price, menuItem?.name, selectedModifier);
         dispatch({
             type: ActionType.SET_ORDERS_INSERT,
             payload: order
