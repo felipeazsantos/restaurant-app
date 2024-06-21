@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from 'react';
-import { IFoodModifier } from '../../interfaces/IFoodModifierItem';
+import { IFoodModifier } from '../../../../interfaces/IFoodModifierItem';
 import { Box, Radio, Typography } from '@mui/material';
 
 export const FoodModifierItem: FC<IFoodModifier> = (props): ReactElement => {

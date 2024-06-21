@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-import { IFoodModifierHeader } from '../../interfaces/IFoodModifierHeader';
+import { IFoodModifierHeader } from '../../../../interfaces/IFoodModifierHeader';
 
 export const FoodModifierHeader: FC<IFoodModifierHeader> = (props): ReactElement => {
     const { modifier } = props;

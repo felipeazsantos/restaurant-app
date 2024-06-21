@@ -2,7 +2,7 @@ import { Avatar, Box, IconButton, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { IFoodModalDetails } from '../../interfaces/IFoodModalDetails';
 import { MenuItemModifiers } from '../../../../types/MenuDetails';
-import { FoodModifiersContainer } from '../../FoodModifiersContainer/FoodModifiersContainer';
+import { FoodModifiersContainer } from './FoodModifiersContainer/FoodModifiersContainer';
 import { Cancel } from '@mui/icons-material';
 import { CustomModal } from '../../../Common/CustomModal/CustomModal';
 
