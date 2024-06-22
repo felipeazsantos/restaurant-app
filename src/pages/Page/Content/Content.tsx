@@ -20,7 +20,7 @@ export const Content: FC = (): ReactElement => {
                             p={isMobScreen ? "inherited" : "32px 40px"}
                         >
                             <Stack direction="row" spacing={2}>
-                                <Grid item xs={12} md={9}>
+                                <Grid item xs={12} md={9} minWidth="50vw">
                                     <FoodHeader />
                                 </Grid>
                                 {!isMobScreen &&

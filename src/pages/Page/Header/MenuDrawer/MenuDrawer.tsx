@@ -3,10 +3,12 @@ import React, { FC, ReactElement } from 'react';
 import { IMenuDrawer } from '../../interfaces/IMenuDrawer';
 import { Home, Login, Mail } from '@mui/icons-material';
 import { useWebSettings } from '../../../../hooks/useWebSettings';
+import { useIsMobScreen } from '../../../../hooks/useIsMobScreen';
 
 export const MenuDrawer: FC<IMenuDrawer> = (props): ReactElement => {
     const { drawerState, drawerClose } = props;
     const { primaryColour } = useWebSettings();
+    const isMobScreen = useIsMobScreen();
 
     return (
         <Drawer
@@ -14,7 +16,7 @@ export const MenuDrawer: FC<IMenuDrawer> = (props): ReactElement => {
             open={drawerState}
             onClose={drawerClose}
         >
-            <Box width="14vw" pl="10px" >
+            <Box width={isMobScreen ? "50vw" : "14vw"} pl={isMobScreen ? "0" : "10px"} >
                 <List sx={{ width: '100%' }}>
                     <ListItem disablePadding>
                         <ListItemButton>

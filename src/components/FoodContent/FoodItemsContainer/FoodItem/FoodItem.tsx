@@ -4,6 +4,7 @@ import { IFoodItem } from '../../interfaces/IFoodItem';
 import { FoodModalDetails } from '../FoodModalDetails/FoodModalDetails';
 import { useOrderItemQuantity } from '../../../../hooks/useOrderItemQuantity';
 import { useWebSettings } from '../../../../hooks/useWebSettings';
+import { useIsMobScreen } from '../../../../hooks/useIsMobScreen';
 
 export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -12,6 +13,7 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
     const handleModalClose = () => setModalOpen(false);
     const orderItemQuantity = useOrderItemQuantity(orders, menuItem?.id);
     const { primaryColour } = useWebSettings();
+    const isMobScreen = useIsMobScreen();
 
     return (
         <>
@@ -19,40 +21,42 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
                 <Grid container marginBottom="20px">
                     <Stack direction="row" spacing={2} paddingRight="20px">
                         <Grid item xs={8} md={10}>
-                            <Box display="flex" alignItems="center">
-                                {orderItemQuantity > 0 &&
-                                    <Typography
-                                        borderRadius="4px"
-                                        bgcolor={primaryColour}
-                                        color="#ffffff"
-                                        p="0 5px"
-                                        mr="8px"
-                                        fontSize="12px"
-                                        fontWeight="bold">
-                                        {orderItemQuantity}
-                                    </Typography>}
-                                <Typography fontWeight="500" fontSize="16px" color="#121212">
-                                    {name}
+                            <Box minWidth={isMobScreen ? "45vw" : "35vw"}>
+                                <Box display="flex" alignItems="center">
+                                    {orderItemQuantity > 0 &&
+                                        <Typography
+                                            borderRadius="4px"
+                                            bgcolor={primaryColour}
+                                            color="#ffffff"
+                                            p="0 5px"
+                                            mr="8px"
+                                            fontSize="12px"
+                                            fontWeight="bold">
+                                            {orderItemQuantity}
+                                        </Typography>}
+                                    <Typography fontWeight="500" fontSize="16px" color="#121212">
+                                        {name}
+                                    </Typography>
+                                </Box>
+                                <Typography
+                                    variant="body2"
+                                    fontSize="16px"
+                                    color="#464646"
+                                    fontWeight="300"
+                                    sx={{
+                                        display: '-webkit-box',
+                                        overflow: 'hidden',
+                                        WebkitBoxOrient: 'vertical',
+                                        WebkitLineClamp: 2,
+                                        textOverflow: 'ellipsis'
+                                    }}
+                                >
+                                    {description}
+                                </Typography>
+                                <Typography fontWeight="500" fontSize="16px" color="#464646">
+                                    R${price}
                                 </Typography>
                             </Box>
-                            <Typography
-                                variant="body2"
-                                fontSize="16px"
-                                color="#464646"
-                                fontWeight="300"
-                                sx={{
-                                    display: '-webkit-box',
-                                    overflow: 'hidden',
-                                    WebkitBoxOrient: 'vertical',
-                                    WebkitLineClamp: 2,
-                                    textOverflow: 'ellipsis'
-                                }}
-                            >
-                                {description}
-                            </Typography>
-                            <Typography fontWeight="500" fontSize="16px" color="#464646">
-                                R${price}
-                            </Typography>
                         </Grid>
                         <Grid item xs={4} md={2} >
                             <Avatar
@@ -66,7 +70,7 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
                                 }} />
                         </Grid>
                     </Stack>
-                </Grid>
+                </Grid >
             </Box >
             <FoodModalDetails {...props} open={modalOpen} onClose={handleModalClose} />
         </>

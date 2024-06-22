@@ -15,7 +15,7 @@ export const FoodBasket: FC<IFoodBasket> = (props): ReactElement => {
     }
 
     return (
-        <Box component={isMobScreen ? Box : Card}>
+        <Box component={isMobScreen ? Box : Card} minWidth={isMobScreen ? "inherited" : "17vw"}>
             <FoodBasketHeader onClose={onClose} />
             <Divider />
             <FoodBasketContent />
