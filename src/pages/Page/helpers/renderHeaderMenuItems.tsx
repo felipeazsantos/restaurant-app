@@ -1,8 +1,13 @@
 import React from 'react';
-import { IconButton, Stack, Typography } from '@mui/material';
+import { IconButton, Tab, Tabs, Typography } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 
-export const renderHeaderMenuItems = (isMobSecreen: boolean, drawerOpen: () => void): React.ReactNode => {
+export const renderHeaderMenuItems = (
+    isMobSecreen: boolean,
+    drawerOpen: () => void,
+    value: number,
+    setValue: React.Dispatch<React.SetStateAction<number>>
+): React.ReactNode => {
     if (isMobSecreen) {
         return (
             <>
@@ -22,25 +27,32 @@ export const renderHeaderMenuItems = (isMobSecreen: boolean, drawerOpen: () => v
             </>
         )
     } else {
+        const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+            setValue(newValue);
+        }
+
         return (
             <>
-                <Stack direction="row" spacing={16}>
-                    {
-                        ['Menu', 'Entrar', 'Contato'].map(text => {
-                            return (
-                                <Typography
-                                    fontWeight="400"
-                                    fontSize="18px"
-                                    textTransform="uppercase"
-                                    mb="10px"
-                                    sx={{ cursor: 'pointer' }}
-                                >
-                                    {text}
-                                </Typography>
-                            )
-                        })
-                    }
-                </Stack>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    sx={{
+                        '& .MuiTabs-indicator': {
+                            backgroundColor: '#ffffff',
+                        },
+                        '& .MuiTab-root': {
+                            color: '#ffffff',
+                            px: '64px',
+                            '&.Mui-selected': {
+                                color: '#ffffff',
+                            },
+                        },
+                    }}
+                    aria-label="header menu tabs">
+                    <Tab label="Menu" />
+                    <Tab label="Entrar" />
+                    <Tab label="Contato" />
+                </Tabs>
             </>
         )
     }

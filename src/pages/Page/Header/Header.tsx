@@ -9,6 +9,7 @@ import { renderHeaderMenuItems } from '../helpers/renderHeaderMenuItems';
 export const Header: FC = (): ReactElement => {
     const { navBackgroundColour, bannerImage } = useWebSettings();
     const [drawerState, setDrawerState] = useState<boolean>(false);
+    const [value, setValue] = useState<number>(0);
     const isMobSecreen = useIsMobScreen();
 
     const drawerOpen = () => setDrawerState(true);
@@ -25,7 +26,7 @@ export const Header: FC = (): ReactElement => {
                         width="100%"
                         position="relative"
                     >
-                        {renderHeaderMenuItems(isMobSecreen, drawerOpen)}
+                        {renderHeaderMenuItems(isMobSecreen, drawerOpen, value, setValue)}
                     </Box>
                 </Toolbar>
             </AppBar>

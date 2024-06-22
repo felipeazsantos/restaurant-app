@@ -1,10 +1,11 @@
 import { Avatar, Box, IconButton, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { IFoodModalDetails } from '../../interfaces/IFoodModalDetails';
-import { MenuItemModifiers } from '../../../../types/MenuDetails';
-import { FoodModifiersContainer } from './FoodModifiersContainer/FoodModifiersContainer';
 import { Cancel } from '@mui/icons-material';
 import { CustomModal } from '../../../Common/CustomModal/CustomModal';
+import { renderMenuItemModifiers } from '../../helpers/renderMenuItemModifiers';
+import { renderItemNoModifier } from '../../helpers/renderItemNoModifier';
+import { useIsMobScreen } from '../../../../hooks/useIsMobScreen';
 
 export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => {
     const {
@@ -15,32 +16,6 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
         open,
         onClose
     } = props;
-
-    const renderMenuItemModifiers = (modifier: MenuItemModifiers) => {
-        return (
-            <FoodModifiersContainer
-                key={modifier.id}
-                modifier={modifier}
-                menuItem={menuItem}
-                onClose={onClose} />
-        )
-    }
-
-    const renderItemNoModifier = () => {
-        const modifier: MenuItemModifiers = {
-            name: 'Choose an item',
-            maxChoices: 1,
-            id: menuItem?.id,
-            items: [
-                {
-                    id: menuItem?.id,
-                    name: menuItem?.name,
-                    price: menuItem?.price
-                }
-            ]
-        }
-        return <FoodModifiersContainer key={modifier.id} modifier={modifier} menuItem={menuItem} onClose={onClose} />
-    }
 
     return (
         <CustomModal
@@ -71,7 +46,9 @@ export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => 
                 </Typography>
             </Box>
             <Box>
-                {menuItem?.modifiers ? menuItem?.modifiers?.map(renderMenuItemModifiers) : renderItemNoModifier()}
+                {menuItem?.modifiers ?
+                    menuItem?.modifiers?.map((modifier) => renderMenuItemModifiers(modifier, menuItem, onClose)) :
+                    renderItemNoModifier(menuItem, onClose)}
             </Box>
         </CustomModal>
     );

@@ -1,22 +1,13 @@
 import React, { FC, ReactElement } from 'react';
 import { ICustomModal } from '../interfaces/ICustomModal';
 import { Box, Modal } from '@mui/material';
-
-const modalStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '100%',
-    height: '100%',
-    bgcolor: '#F8F9FA',
-    boxShadow: 24,
-    overflowY: 'scroll',
-    overflowX: 'hidden'
-};
+import { useIsMobScreen } from '../../../hooks/useIsMobScreen';
+import { customModalStyle } from '../../FoodContent/helpers/customModalStyle';
 
 export const CustomModal: FC<ICustomModal> = (props): ReactElement => {
     const { open, onClose, children } = props;
+    const isMobScreen = useIsMobScreen();
+    const modalStyle = customModalStyle(isMobScreen);
 
     return (
         <Modal open={open} onClose={onClose}>
