@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import { ActionType, WebSettingsAction, MenuDetailsAction, OrdersAction, ReducerState, TabSelectedAction } from "../types/Reducers";
+import { getLocalStorage } from "../helpers/getLocalStorage";
+import { setLocalStorage } from "../helpers/setLocalStorage";
 
 const initState: ReducerState = {
     webSettings: {},
     menuDetails: {},
-    orders: [],
+    orders: getLocalStorage('orders') || [],
     tabSelected: 0
 }
 
@@ -43,20 +45,24 @@ const ordersReducers = (state = initState, action: OrdersAction): ReducerState =
                     }
                     return order;
                 });
+                setLocalStorage('orders', updateOrders)
                 return {
                     ...state,
                     orders: updateOrders
                 }
             } else {
                 // order doesn't exists
+                const updateOrders = [...state.orders, action.payload]
+                setLocalStorage('orders', updateOrders)
                 return {
                     ...state,
-                    orders: [...state.orders, action.payload]
+                    orders: updateOrders
                 }
             }
         case ActionType.SET_ORDERS_UPDATE_BASKET:
             const orderUpdateIndex = state.orders.findIndex(order => order.modifierId === action.payload.modifierId);
             const updateOrders = state.orders.map((order, index) => index === orderUpdateIndex ? action.payload : order);
+            setLocalStorage('orders', updateOrders)
             return {
                 ...state,
                 orders: updateOrders
