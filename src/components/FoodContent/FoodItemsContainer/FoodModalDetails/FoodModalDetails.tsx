@@ -5,7 +5,6 @@ import { Cancel } from '@mui/icons-material';
 import { CustomModal } from '../../../Common/CustomModal/CustomModal';
 import { renderMenuItemModifiers } from '../../helpers/renderMenuItemModifiers';
 import { renderItemNoModifier } from '../../helpers/renderItemNoModifier';
-import { useIsMobScreen } from '../../../../hooks/useIsMobScreen';
 
 export const FoodModalDetails: FC<IFoodModalDetails> = (props): ReactElement => {
     const {
