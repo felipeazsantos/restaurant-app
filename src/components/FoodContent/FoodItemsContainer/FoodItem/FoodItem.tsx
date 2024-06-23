@@ -5,16 +5,16 @@ import { FoodModalDetails } from '../FoodModalDetails/FoodModalDetails';
 import { useOrderItemQuantity } from '../../../../hooks/useOrderItemQuantity';
 import { useWebSettings } from '../../../../hooks/useWebSettings';
 import { useIsMobScreen } from '../../../../hooks/useIsMobScreen';
+import { formatToBRL } from '../../../../helpers/formatToBRL';
 
 export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
-    const { name, description, price, imageUrl, menuItem, orders } = props;
+    const { name, description, price = 0, imageUrl, menuItem, orders } = props;
     const handleModalOpen = () => setModalOpen(true);
     const handleModalClose = () => setModalOpen(false);
     const orderItemQuantity = useOrderItemQuantity(orders, menuItem?.id);
     const { primaryColour } = useWebSettings();
     const isMobScreen = useIsMobScreen();
-
     return (
         <>
             <Box onClick={handleModalOpen}>
@@ -54,7 +54,7 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
                                     {description}
                                 </Typography>
                                 <Typography fontWeight="500" fontSize="16px" color="#464646">
-                                    R${price}
+                                    {formatToBRL(price)}
                                 </Typography>
                             </Box>
                         </Grid>

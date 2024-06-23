@@ -4,6 +4,7 @@ import { ControlQuantity } from '../../../../Common/ControlQuantity/ControlQuant
 import { IFoodBasketContentItem } from '../../../interfaces/IFoodBasketContentItem';
 import { useDispatch } from 'react-redux';
 import { updateOrderQuantity } from '../../../helpers/updateOrderQuantity';
+import { formatToBRL } from '../../../../../helpers/formatToBRL';
 
 
 export const FoodBasketContentItem: FC<IFoodBasketContentItem> = (props): ReactElement => {
@@ -24,7 +25,7 @@ export const FoodBasketContentItem: FC<IFoodBasketContentItem> = (props): ReactE
                         {menuItemName}
                     </Typography>
                     <Typography color="#121212" fontWeight="400">
-                        R${price * counter}
+                        {formatToBRL(price * counter)}
                     </Typography>
                 </Box>
                 {hasModifier && <Typography color="#5F5F5F" variant="body2">{item?.name} (+R${price})</Typography>}

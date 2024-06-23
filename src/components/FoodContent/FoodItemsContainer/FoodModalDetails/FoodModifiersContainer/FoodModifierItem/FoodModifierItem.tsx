@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { IFoodModifier } from '../../../../interfaces/IFoodModifierItem';
 import { Box, Radio, Typography } from '@mui/material';
+import { formatToBRL } from '../../../../../../helpers/formatToBRL';
 
 export const FoodModifierItem: FC<IFoodModifier> = (props): ReactElement => {
     const { modifier, position, positionSelected, setPositionSelected } = props;
@@ -14,7 +15,7 @@ export const FoodModifierItem: FC<IFoodModifier> = (props): ReactElement => {
                     {modifier?.name}
                 </Typography>
                 <Typography>
-                    R${modifier?.price}
+                    {formatToBRL(modifier?.price || 0)}
                 </Typography>
             </Box>
             <Box>

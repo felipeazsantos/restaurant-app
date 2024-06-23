@@ -1,6 +1,7 @@
 import { Box, Divider, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { useBasketTotal } from '../../../../hooks/useBasketTotal';
+import { formatToBRL } from '../../../../helpers/formatToBRL';
 
 export const FoodBasketTotal: FC = (): ReactElement => {
     const total = useBasketTotal();
@@ -12,7 +13,7 @@ export const FoodBasketTotal: FC = (): ReactElement => {
                     Sub total
                 </Typography>
                 <Typography fontSize="16px" color="#121212" fontWeight="400">
-                    R${total}
+                    {formatToBRL(total)}
                 </Typography>
             </Box>
             <Divider />
@@ -21,7 +22,7 @@ export const FoodBasketTotal: FC = (): ReactElement => {
                     Total
                 </Typography>
                 <Typography fontSize="24px" color="#121212" fontWeight="700">
-                    R${total}
+                    {formatToBRL(total)}
                 </Typography>
             </Box>
         </Box>
