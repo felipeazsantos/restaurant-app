@@ -1,10 +1,13 @@
-import { Box, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import React, { FC, ReactElement, useEffect, useRef, useState } from 'react';
 import { ControlQuantity } from '../../../../Common/ControlQuantity/ControlQuantity';
 import { IFoodBasketContentItem } from '../../../interfaces/IFoodBasketContentItem';
 import { useDispatch } from 'react-redux';
 import { updateOrderQuantity } from '../../../helpers/updateOrderQuantity';
 import { formatToBRL } from '../../../../../helpers/formatToBRL';
+import { Delete } from '@mui/icons-material';
+import { useWebSettings } from '../../../../../hooks/useWebSettings';
+import { deleteOrderFromCart } from '../../../helpers/deleteOrderFromCart';
 
 
 export const FoodBasketContentItem: FC<IFoodBasketContentItem> = (props): ReactElement => {
@@ -12,6 +15,7 @@ export const FoodBasketContentItem: FC<IFoodBasketContentItem> = (props): ReactE
     const { item, price = 0, quantity = 0, menuItemName } = order;
     const [counter, setCounter] = useState<number>(quantity);
     const initialCounterRef = useRef<number>(quantity);
+    const { primaryColour } = useWebSettings();
     const hasModifier = menuItemName !== item?.name;
     const dispatch = useDispatch();
 
@@ -30,17 +34,24 @@ export const FoodBasketContentItem: FC<IFoodBasketContentItem> = (props): ReactE
                 </Box>
                 {hasModifier && <Typography color="#5F5F5F" variant="body2">{item?.name} (+R${price})</Typography>}
             </Box>
-            <ControlQuantity
-                counter={counter}
-                setCounter={setCounter}
-                height="24px"
-                width="24px"
-                position="start"
-                iconFontSize="20px"
-                counterFontSize="14px"
-                counterPadding="0 16px"
-                boxPadding="10px 24px"
-            />
+            <Box display="flex" justifyContent="space-between">
+                <ControlQuantity
+                    counter={counter}
+                    setCounter={setCounter}
+                    height="24px"
+                    width="24px"
+                    position="start"
+                    iconFontSize="20px"
+                    counterFontSize="14px"
+                    counterPadding="0 16px"
+                    boxPadding="10px 24px"
+                />
+                <Box pr="10px">
+                    <IconButton onClick={() => deleteOrderFromCart(dispatch, order)}>
+                        <Delete htmlColor={primaryColour} />
+                    </IconButton>
+                </Box>
+            </Box>
         </Box>
     )
 

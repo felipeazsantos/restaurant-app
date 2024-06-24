@@ -5,10 +5,12 @@ import { FoodBasketContent } from './FoodBasketContent/FoodBasketContent';
 import { ButtonCheckout } from '../ButtonCheckout/ButtonCheckout';
 import { IFoodBasket } from '../interfaces/IFoodBasket';
 import { useIsMobScreen } from '../../../hooks/useIsMobScreen';
+import { useOrders } from '../../../hooks/useOrders';
 
 export const FoodBasket: FC<IFoodBasket> = (props): ReactElement => {
     const { onClose = () => { } } = props;
     const isMobScreen = useIsMobScreen();
+    const orders = useOrders();
 
     const handleClickCheckout = () => {
         onClose();
@@ -19,7 +21,7 @@ export const FoodBasket: FC<IFoodBasket> = (props): ReactElement => {
             <FoodBasketHeader onClose={onClose} />
             <Divider />
             <FoodBasketContent />
-            {isMobScreen &&
+            {isMobScreen && orders.length > 0 &&
                 <Box py="24px">
                     <ButtonCheckout buttonText='Checkout now' handleClick={handleClickCheckout} />
                 </Box>

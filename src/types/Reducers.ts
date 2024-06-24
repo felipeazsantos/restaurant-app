@@ -7,7 +7,8 @@ export enum ActionType {
     SET_WEB_SETTINGS = "SET_WEB_SETTINGS",
     SET_ORDERS_INSERT = "SET_ORDERS_INSERT",
     SET_ORDERS_UPDATE_BASKET = "SET_ORDERS_UPDATE",
-    SET_TAB_SELECTED = "SET_TAB_SELECTED"
+    SET_TAB_SELECTED = "SET_TAB_SELECTED",
+    ORDER_DELETE = "ORDER_DELETE",
 }
 
 export type ActionsType =
@@ -15,7 +16,8 @@ export type ActionsType =
     ActionType.SET_WEB_SETTINGS |
     ActionType.SET_ORDERS_INSERT |
     ActionType.SET_ORDERS_UPDATE_BASKET |
-    ActionType.SET_TAB_SELECTED
+    ActionType.SET_TAB_SELECTED |
+    ActionType.ORDER_DELETE
 
 export interface WebSettingsAction {
     type: ActionsType;
