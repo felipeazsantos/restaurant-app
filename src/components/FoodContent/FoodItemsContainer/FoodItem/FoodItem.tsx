@@ -17,7 +17,7 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
     const isMobScreen = useIsMobScreen();
     return (
         <>
-            <Box onClick={handleModalOpen}>
+            <Box onClick={handleModalOpen} sx={{ cursor: 'pointer' }}>
                 <Grid container marginBottom="20px">
                     <Stack direction="row" spacing={2} paddingRight="20px">
                         <Grid item xs={8} md={10}>
@@ -71,7 +71,7 @@ export const FoodItem: FC<IFoodItem> = (props): ReactElement => {
                         </Grid>
                     </Stack>
                 </Grid >
-            </Box >
+            </Box>
             <FoodModalDetails {...props} open={modalOpen} onClose={handleModalClose} />
         </>
     )
